@@ -1,8 +1,8 @@
-import Uvstat from '../src/index'
+import Vcomment from '../src/index'
 
-const uvstat = new Uvstat()
-uvstat.renderStat()
-uvstat.getStat(['http://localhost:9219']).then(stats => {
-  console.log('getStat: ', stats)
+const vcomment = new Vcomment({
+  id: 'comments',
+  postId: '1578617357642',
 })
-uvstat.setStat()
+
+vcomment.render()

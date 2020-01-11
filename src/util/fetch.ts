@@ -1,4 +1,4 @@
-export const post = (url: string, data?: { data: IUrlCount[] }, timeout?: number) => {
+export const fetchPost = (url: string, data?: { data: string[] }, timeout?: number) => {
     return new Promise<IResponse>((resolve, reject) => {
         fetch(url, {
             body: JSON.stringify(data),
@@ -14,5 +14,15 @@ export const post = (url: string, data?: { data: IUrlCount[] }, timeout?: number
                 reject(data);
             }, timeout);
         }
+    });
+};
+
+export const fetchGet = (url: string) => {
+    return new Promise<IResponse>((resolve) => {
+        fetch(url).then((response: Response) => {
+            return response.json();
+        }).then((responseData: IResponse) => {
+            return resolve(responseData);
+        });
     });
 };
