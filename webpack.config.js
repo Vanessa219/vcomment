@@ -50,10 +50,34 @@ module.exports = [
       'index.min': './src/index.ts',
     },
     resolve: {
-      extensions: ['.js', '.ts'],
+      extensions: ['.js', '.ts', '.scss'],
     },
     module: {
       rules: [
+        {
+          test: /\.scss$/,
+          include: [path.resolve(__dirname, 'src/assets')],
+          use: [
+            {
+              loader: 'css-loader', // translates CSS into CommonJS
+              options: {
+                url: false,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: () => [
+                  require('autoprefixer')({grid: true, remove: false}),
+                ],
+              },
+            },
+            {
+              loader: 'sass-loader', // compiles Sass to CSS
+            },
+          ],
+        },
         {
           test: /\.js$/,
           exclude: '/node_modules/',

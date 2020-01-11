@@ -19,10 +19,37 @@ module.exports = {
     'index.js': './demo/index.js',
   },
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.js', '.ts', '.scss'],
   },
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        include: [path.resolve(__dirname, 'src')],
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: {
+              url: false,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                require('autoprefixer')({grid: true, remove: false}),
+              ],
+            },
+          },
+          {
+            loader: 'sass-loader', // compiles Sass to CSS
+          },
+        ],
+      },
       {
         test: /\.ts$/,
         use: 'ts-loader',

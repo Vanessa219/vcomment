@@ -19,7 +19,9 @@ export const fetchPost = (url: string, data?: { data: string[] }, timeout?: numb
 
 export const fetchGet = (url: string) => {
     return new Promise<IResponse>((resolve) => {
-        fetch(url).then((response: Response) => {
+        fetch(url, {
+            credentials: "include",
+        }).then((response: Response) => {
             return response.json();
         }).then((responseData: IResponse) => {
             return resolve(responseData);
