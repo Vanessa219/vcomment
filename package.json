@@ -1,0 +1,39 @@
+{
+  "name": "vcomment",
+  "version": "1.0.0",
+  "description": "Statistics tool for static page",
+  "main": "dist/index.min.js",
+  "funding": "https://hacpai.com/sponsor",
+  "jsdelivr": "dist/index.min.js",
+  "files": [
+    "dist/*"
+  ],
+  "author": "Vanessa <v@b3log.org> (http://vanessa.b3log.org)",
+  "license": "MIT",
+  "repository": "git://github.com/Vanessa219/vcomment.git",
+  "bugs": {
+    "url": "https://github.com/Vanessa219/vcomment/issues"
+  },
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack-dev-server --config webpack.start.js",
+    "lint": "tslint --fix -c tslint.json 'src/**/*.ts'"
+  },
+  "keywords": [
+    "Statistics",
+    "Static web page",
+    "B3log"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "ts-loader": "^6.2.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.4",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
