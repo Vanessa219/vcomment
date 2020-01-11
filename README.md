@@ -1,6 +1,6 @@
 ## 💡 简介
 
-[uvstat](https://github.com/Vanessa219/uvstat) 是一个为静态页面访问数提供统计和展现的小工具。
+[vcomment](https://github.com/Vanessa219/vcomment) 为你的文字添加评论社交功能，从此不再孤独。
 
 ## 🛠️ 使用文档
 
@@ -9,20 +9,13 @@
 * 安装依赖
 
 ```shell
-npm install uvstat --save
+npm install vcomment --save
 ```
 
-* 在代码中引入并初始化对象，可参考 [index.js](https://github.com/Vanessa219/uvstat/blob/master/demo/index.js)
+* 在代码中引入并初始化对象，可参考 [index.js](https://github.com/Vanessa219/vcomment/blob/master/demo/index.js)
 
 ```ts
-import Uvstat from 'uvstat'
 
-const uvstat = new Uvstat()
-uvstat.renderStat()
-uvstat.getStat(['http://localhost:9219']).then(stats => {
-  console.log('getStat: ', stats)
-})
-uvstat.setStat()
 ```
 
 ### HTML script
@@ -30,40 +23,20 @@ uvstat.setStat()
 * 在 HTML 中插入 js
 
 ```html
-<!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/uvstat@x.x.x/dist... -->
-<script src="https://cdn.jsdelivr.net/npm/uvstat/dist/index.min.js" defer></script>
+<!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vcomment@x.x.x/dist... -->
+<script src="https://cdn.jsdelivr.net/npm/vcomment/dist/index.min.js" defer></script>
 ```
 
 ### 示例代码
 
-* [CommonJS](https://github.com/Vanessa219/uvstat/blob/master/demo/index.js)
+* [CommonJS](https://github.com/Vanessa219/vcomment/blob/master/demo/index.js)
 
 ### API
 
 #### options
 
-||说明|默认值|
-|---|---|---|
-|cache|访问过的页面不再进行统计|true|
-|cacheId|localStorage 名称|'uvstat'|
-|loading|加载中的 svg|-|
-|location|计数 url 配置|-|
-|location.hash|是否统计 hash|false|
-|location.pathname|是否统计 pathname|true|
-|location.search|是否统计 search|false|
-|renderName|计数元素中的 data 属性名称|'uvstaturl'|
-|timeout|请求超时 ms|2000|
-|url|服务端请求地址|'https://hacpai.com/uvstat'|
-
-
 #### methods
 
-||说明|
-|---|---|
-|getStat(urls: string[], timeout?: number): string[]|获取给定 urls 的计数|
-|addStat()|为当前页面添加计数|
-|renderStat()|计数渲染|
-|clearCache()|清除缓存|
 
 ## 欢迎关注 B3log 开源社区微信公众号 `B3log开源`
 
