@@ -1,7 +1,7 @@
 {
   "name": "vcomment",
   "version": "1.0.0",
-  "description": "Statistics tool for static page",
+  "description": "Full-featured comment system",
   "main": "dist/index.min.js",
   "funding": "https://hacpai.com/sponsor",
   "jsdelivr": "dist/index.min.js",

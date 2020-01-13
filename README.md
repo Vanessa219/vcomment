@@ -1,6 +1,6 @@
 ## 💡 简介
 
-[vcomment](https://github.com/Vanessa219/vcomment) 为你的文字添加评论社交功能，从此不再孤独。
+[vcomment](https://github.com/Vanessa219/vcomment) 🧵 B3log 分布式社区的评论组件，欢迎加入下一代社区网络。
 
 ## 🛠️ 使用文档
 
@@ -15,7 +15,20 @@ npm install vcomment --save
 * 在代码中引入并初始化对象，可参考 [index.js](https://github.com/Vanessa219/vcomment/blob/master/demo/index.js)
 
 ```ts
+import Vcomment from '../src/index'
 
+const vcomment = new Vcomment({
+  id: 'comments',
+  postId: '1353745196751',
+  url: 'http://localhost:8080',
+  currentPage: 3,
+  vditor: {
+    hljsEnable: false,
+    hljsStyle: "github"
+  }
+})
+
+vcomment.render()
 ```
 
 ### HTML script
@@ -35,8 +48,22 @@ npm install vcomment --save
 
 #### options
 
+| |说明|	默认值|
+|---|---|---|
+| id| 渲染元素的 id |-|
+| postId| 文章 id |-|
+| url| 评论 API 地址 |"https://hacpai.com"|
+| currentPage| 评论页码|1|
+|vditor|编辑器参数|-|
+|vditor.hljsEnable|是否启用高亮|true|
+|vditor.hljsStyle|高亮样式|"github"|
+|vditor.emoji|自定义表情 { [key: string]: string }|{}|
+
 #### methods
 
+| |说明|
+|---|---|
+|render|渲染评论|
 
 ## 欢迎关注 B3log 开源社区微信公众号 `B3log开源`
 
