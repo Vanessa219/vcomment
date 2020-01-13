@@ -21,6 +21,9 @@ export const initVditor = (options: IOptions) => {
                 });
             }
         },
+        xhrFields: {
+            withCredentials: true,
+        },
     });
 
     const $commentSubmitBtn = $("#commentSubmitBtn");

@@ -1,5 +1,7 @@
 import {alertMsg} from "../util/alertMst";
+import {confirmMsg} from "../util/confirmMsg";
 import {goLogin} from "../util/goLogin";
+import {lazyloadImg} from "../util/lazyloadImg";
 import {commentToggle} from "./commentToggle";
 
 export const commentMenu = (options: IOptions) => {
@@ -50,8 +52,40 @@ export const commentMenu = (options: IOptions) => {
 </div>`).slideDown();
         $actionPanel.find("input").focus();
     }).on("click", ".commentThankBtn", function() {
-        const $it = $(this);
-        // thankComment($it, $it.closest("li").attr("id"), $it.data("tip"));
+        const $btn = $(this);
+        confirmMsg($btn.data("tip"), () => {
+            if ($btn.attr("disabled") === "disabled") {
+                return;
+            }
+
+            $btn.attr("disabled", "disabled");
+
+            $.ajax({
+                cache: false,
+                complete: () => {
+                    $btn.removeAttr("disabled");
+                },
+                data: JSON.stringify({
+                    commentId:     $btn.closest("li").attr("id"),
+                }),
+                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                type: "POST",
+                url: options.url + "/apis/vcomment/thank",
+                success(result) {
+                    if (result.code !== 0) {
+                        alertMsg(result.msg);
+                        return;
+                    }
+                    $btn.closest("li")[0].outerHTML = result.data.html;
+                    lazyloadImg(options.id);
+                    Util.parseLanguage();
+                    Util.parseMarkdown();
+                },
+                xhrFields: {
+                    withCredentials: true,
+                },
+            });
+        });
     }).on("click", ".commentMenuBtn .commentShowEditorBtn", function() {
         const $it = $(this);
         commentToggle(options, $it.closest("li").attr("id"), $it.data("name"),
