@@ -156,7 +156,7 @@ export const commentList = (options: IOptions) => {
 
                     if ($btn.closest(".comment2Form").length === 1) {
                         // at
-                        $btn.closest(".comment2__form").remove();
+                        $btn.closest(".vcomment__comment2-form").remove();
                     } else {
                         // comment2
                         $btn.closest("li").find(".commentActionPanel").slideUp();

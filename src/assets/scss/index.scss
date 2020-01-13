@@ -326,6 +326,10 @@ $popItemColor: #616161 !default;
   }
 
   &__paginations {
+    font-size: 16px;
+    .vcomment__pointer {
+      font-size: 16px;
+    }
     .vcomment__svg {
       height: 14px;
       width: 14px;
