@@ -104,7 +104,7 @@ export const commentMenu = (options: IOptions) => {
             $.ajax({
                 cache: false,
                 type: "POST",
-                url: options.url + "/comment/" + id + "/remove",
+                url: options.url + "/apis/vcomment/" + id + "/remove",
                 success(result) {
                     if (result.sc === 0) {
                         $("#" + id).remove();
@@ -114,6 +114,9 @@ export const commentMenu = (options: IOptions) => {
                         alertMsg(result.msg);
                     }
                 },
+                xhrFields: {
+                    withCredentials: true,
+                },
             });
         });
     }).on("click", ".commentEditBtn", function() {
@@ -121,11 +124,14 @@ export const commentMenu = (options: IOptions) => {
         commentToggle(options, $it.closest("li").attr("id"));
         $.ajax({
             cache: false,
-            url: options.url + "/apis/vcomment/" + $it.closest("li").attr("id") + "/content",
+            url: options.url + "/apis/vcomment/vcomment" + $it.closest("li").attr("id") + "/content",
             success(result) {
                 if (result.sc === 0) {
                     options.commentVditor.setValue(result.commentContent);
                 }
+            },
+            xhrFields: {
+                withCredentials: true,
             },
         });
     });
