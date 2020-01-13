@@ -94,7 +94,6 @@ export const commentMenu = (options: IOptions) => {
             $it.data("avatar"));
     }).on("click", ".commentRemoveBtn", function() {
         const $it = $(this);
-        // removeComment($it.closest("li").attr("id"), options && options.removeCmt);
         if (!$(`#${options.id} .vcomment`).data("login")) {
             goLogin(options.url);
             return;
