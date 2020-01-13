@@ -141,7 +141,7 @@ export const commentList = (options: IOptions) => {
             data,
             headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
             type,
-            url: options.url + "/apis/vcomment/vcomment2" + id,
+            url: options.url + "/apis/vcomment2" + id,
             success(result) {
                 if (result.code !== 0) {
                     alertMsg(result.msg);
