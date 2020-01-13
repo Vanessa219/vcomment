@@ -134,5 +134,31 @@ export const commentMenu = (options: IOptions) => {
                 withCredentials: true,
             },
         });
+    }).on("click", ".comment2Thank", function() {
+        const $btn = $(this);
+        confirmMsg($btn.data("tip"), () => {
+            $btn.attr("disabled", "disabled");
+            $.ajax({
+                complete: () => {
+                    $btn.removeAttr("disabled");
+                },
+                data: JSON.stringify({
+                    comment2Id: $btn.closest(".comment2Item").data("id"),
+                }),
+                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                type: "POST",
+                url: `${options.url}/apis/vcomment2/thank`,
+                success(result) {
+                    if (result.code === 0) {
+                        $btn.closest(".comment2Item")[0].outerHTML = result.data.html;
+                    } else {
+                        alertMsg(result.msg);
+                    }
+                },
+                xhrFields: {
+                    withCredentials: true,
+                },
+            });
+        });
     });
 };
