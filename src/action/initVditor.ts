@@ -12,7 +12,7 @@ export const initVditor = (options: IOptions) => {
     $.ajax({
         async: false,
         cache: true,
-        url: `${options.url}/apis/vcomments/users/emotions`,
+        url: `${options.url}/apis/vcomment/users/emotions`,
         success(result) {
             if (Array.isArray(result.data)) {
                 result.data.forEach((item: { [key: string]: string }) => {
@@ -55,7 +55,7 @@ export const initVditor = (options: IOptions) => {
                     async: false,
                     data: JSON.stringify({name: key}),
                     type: "POST",
-                    url: `${options.url}/apis/users/names`,
+                    url: `${options.url}/apis/vcomment/users/names`,
                     success(result) {
                         if (result.code === 0) {
                             atUsers = result.data.map((item: IvdtiorHint) => {
