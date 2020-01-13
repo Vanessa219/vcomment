@@ -31,7 +31,7 @@ export const initVditor = (options: IOptions) => {
             options.commentVditor.setValue(comments[options.postId] || "");
             options.commentVditor.focus();
         },
-        cache: true,
+        cache: false,
         counter: 4096,
         ctrlEnter() {
             addComment(options, $commentSubmitBtn);

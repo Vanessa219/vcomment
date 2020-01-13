@@ -8,11 +8,6 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
         return;
     }
 
-    if (options.commentVditor.isUploading()) {
-        alertMsg("[上传中请稍候]");
-        return;
-    }
-
     if (!$commentBtn.data("haspermission")) {
         alertMsg("因权限不足操作已被禁止");
         return;
@@ -36,12 +31,12 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
         requestJSONObject.commentOriginalCommentId = $replyUseName.data("commentOriginalCommentId");
     }
 
-    let url = options.url + "/apis/comment";
+    let url = options.url + "/apis/vcomment";
     let type = "POST";
     const commentId = $replyUseName.data("commentId");
     // edit
     if (commentId) {
-        url = options.url + "/apis/comment/" + commentId;
+        url = options.url + "/apis/vcomment/" + commentId;
         type = "PUT";
     }
 
@@ -86,6 +81,9 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
             if (arguments[0].responseJSON.code === 0) {
                 options.commentVditor.setValue("");
             }
+        },
+        xhrFields: {
+            withCredentials: true,
         },
     });
 };
