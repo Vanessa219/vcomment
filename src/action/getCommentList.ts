@@ -1,5 +1,6 @@
 import {alertMsg} from "../util/alertMst";
 import {lazyloadImg} from "../util/lazyloadImg";
+import {initPagination} from "./initPagination";
 
 export const getCommentList = (options: IOptions) => {
     $.ajax({
@@ -14,7 +15,7 @@ export const getCommentList = (options: IOptions) => {
             lazyloadImg(options.id);
             Util.parseLanguage();
             Util.parseMarkdown();
-
+            initPagination(options)
             options.commentVditor = null;
         },
         url: `${options.url}/apis/vcomment?id=${options.postId}&p=${options.currentPage}`,

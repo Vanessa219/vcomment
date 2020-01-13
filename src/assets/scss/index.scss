@@ -341,7 +341,7 @@ $popItemColor: #616161 !default;
     color: $fade;
   }
 
-  .commentOriginal {
+  .commentOriginal .vcomment__list {
     box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
     margin-bottom: 10px;
   }
