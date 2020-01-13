@@ -190,5 +190,31 @@ export const commentMenu = (options: IOptions) => {
                 withCredentials: true,
             },
         });
+    }).on("click", ".comment2Remove", function() {
+        const $btn = $(this);
+        if ($btn.attr("disabled") === "disabled") {
+            return;
+        }
+        confirmMsg("确定删除么？", () => {
+            $btn.attr("disabled", "disabled");
+            $.ajax({
+                complete: () => {
+                    $btn.removeAttr("disabled");
+                },
+                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                type: "DELETE",
+                url: `${options.url}/apis/vcomment2/${$btn.closest(".comment2Item").data("id")}`,
+                success(result) {
+                    if (result.sc === 0) {
+                        $btn.closest(".comment2Item").remove();
+                    } else {
+                        alertMsg(result.msg);
+                    }
+                },
+                xhrFields: {
+                    withCredentials: true,
+                },
+            });
+        });
     });
 };
