@@ -31,12 +31,12 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
         requestJSONObject.commentOriginalCommentId = $replyUseName.data("commentOriginalCommentId");
     }
 
-    let url = options.url + "/apis/vcomment";
+    let url = options.url + "/apis/vcomment/vcomment";
     let type = "POST";
     const commentId = $replyUseName.data("commentId");
     // edit
     if (commentId) {
-        url = options.url + "/apis/vcomment/" + commentId;
+        url = options.url + "/apis/vcomment/vcomment/" + commentId;
         type = "PUT";
     }
 

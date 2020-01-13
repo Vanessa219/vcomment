@@ -91,6 +91,16 @@ $popItemColor: #616161 !default;
     height: 5px;
   }
 
+  &__text {
+    margin-left: 10px;
+    align-self: center;
+    color: #4285f4;
+    cursor: pointer;
+    &:hover {
+      color: $fade
+    }
+  }
+
   &__input {
     margin-left: 10px;
     align-self: center;
