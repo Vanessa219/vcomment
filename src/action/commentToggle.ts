@@ -3,7 +3,7 @@ import {goLogin} from "../util/goLogin";
 import {initVditor} from "./initVditor";
 
 export const commentToggle = (options: IOptions, id?: string, name?: string, avatar?: string) => {
-    if (!options.isLoggedIn) {
+    if (!$(`#${options.id} .vcomment`).data("login")) {
         goLogin(options.url);
         return;
     }
@@ -11,7 +11,7 @@ export const commentToggle = (options: IOptions, id?: string, name?: string, ava
     const $editorPanel = $(".vcomment__editor");
     const $editorContent = $(".vcomment__editor-main");
 
-    if (!options.commonAddCommentGrant) {
+    if (!$(`#${options.id} .vcomment`).data("grant")) {
         alertMsg("角色有误");
         return;
     }
@@ -38,10 +38,10 @@ export const commentToggle = (options: IOptions, id?: string, name?: string, ava
 </div>`);
     } else if (id) {
         // edit
-        $replyUseName.data("commentId", id).html(`<span class="ft__fade">编辑</span>`);
+        $replyUseName.data("commentId", id).html(`<div class="vcomment__meta">编辑</div>`);
     } else {
         // reply article
-        $replyUseName.html(`<div class="vcomment__flexinline">
+        $replyUseName.html(`<div class="vcomment__flexinline vcomment__meta">
   <svg class="vcomment__svg" viewBox="0 0 32 32">
     <path d="M19.583 9.75q-8.667 1.25-13.375 6.625t-6.208 12.958q6.417-9.083 19.583-9.083v7.25l12.417-12.417-12.417-12.417v7.083z"></path>
   </svg>

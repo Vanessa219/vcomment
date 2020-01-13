@@ -4,7 +4,7 @@ import {commentToggle} from "./commentToggle";
 
 export const commentMenu = (options: IOptions) => {
     $(`#${options.id}`).on("click", ".commentMenuBtn", function() {
-        if (!options.isLoggedIn) {
+        if (!$(`#${options.id} .vcomment`).data("login")) {
             goLogin(options.url);
             return;
         }
@@ -61,7 +61,7 @@ export const commentMenu = (options: IOptions) => {
         // removeComment($it.closest("li").attr("id"), options && options.removeCmt);
     }).on("click", ".commentEditBtn", function() {
         const $it = $(this);
-        // commentToggle($it.closest("li").attr("id"));
+        commentToggle(options, $it.closest("li").attr("id"));
         // getComment($it.closest("li").attr("id"), (result) => {
         //     window.commentEditor.setValue(result.commentContent);
         //     $("#commentVisible").prop("checked", result.commentVisible !== 0);

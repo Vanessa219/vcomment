@@ -2,7 +2,6 @@ export const mergeOptions = (options: IOptions) => {
     const defaultOptions: IOptions = {
         currentPage: 1,
         id: "",
-        isLoggedIn: false,
         url: "https://hacpai.com",
         vditor: {
             hljsEnable: true,

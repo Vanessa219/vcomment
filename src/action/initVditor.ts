@@ -1,5 +1,6 @@
 import {alertMsg} from "../util/alertMst";
 import {lazyloadImg} from "../util/lazyloadImg";
+import {addComment} from "./addComment";
 import {commentToggle} from "./commentToggle";
 
 export const initVditor = (options: IOptions) => {
@@ -11,7 +12,7 @@ export const initVditor = (options: IOptions) => {
     $.ajax({
         async: false,
         cache: true,
-        url: `${options.url}/users/emotions`,
+        url: `${options.url}/apis/users/emotions`,
         success(result) {
             if (Array.isArray(result.data)) {
                 result.data.forEach((item: { [key: string]: string }) => {
@@ -22,17 +23,29 @@ export const initVditor = (options: IOptions) => {
         },
     });
 
+    const $commentSubmitBtn = $("#commentSubmitBtn");
+
     const vditorOptions = {
         after() {
+            const comments = JSON.parse(localStorage.getItem("comments") || "{}");
+            options.commentVditor.setValue(comments[options.postId] || "");
             options.commentVditor.focus();
         },
         cache: true,
         counter: 4096,
         ctrlEnter() {
-            // TODO
+            addComment(options, $commentSubmitBtn);
         },
         esc() {
             commentToggle(options);
+        },
+        input(value: string) {
+            if (value === "\n") {
+                return;
+            }
+            const comments = JSON.parse(localStorage.getItem("comments") || "{}");
+            comments[options.postId] = value;
+            localStorage.setItem("comments", JSON.stringify(comments));
         },
         height: 200,
         hint: {
@@ -42,7 +55,7 @@ export const initVditor = (options: IOptions) => {
                     async: false,
                     data: JSON.stringify({name: key}),
                     type: "POST",
-                    url: `${options.url}/users/names`,
+                    url: `${options.url}/apis/users/names`,
                     success(result) {
                         if (result.code === 0) {
                             atUsers = result.data.map((item: IvdtiorHint) => {
@@ -141,4 +154,8 @@ export const initVditor = (options: IOptions) => {
         vditorOptions.resize.enable = false;
     }
     options.commentVditor = new Vditor("vcommentVditor", vditorOptions);
+
+    $commentSubmitBtn.click(() => {
+        addComment(options, $commentSubmitBtn);
+    });
 };

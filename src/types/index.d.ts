@@ -145,10 +145,7 @@ interface IOptions {
     id: string;
     postId?: string;
     url?: string;
-    csrfToken?: string;
     currentPage?: number;
-    isLoggedIn?: boolean;
-    commonAddCommentGrant?: boolean;
     vditor?: {
         hljsEnable: boolean,
         hljsStyle: string,

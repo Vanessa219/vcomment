@@ -126,7 +126,7 @@ export const commentList = (options: IOptions) => {
                 commentId,
                 commentStatus: $btn.prev().val(),
             }),
-            headers: {csrfToken: options.csrfToken},
+            headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
             type: "POST",
             url: `${options.url}/comment/hide`,
             success(result) {

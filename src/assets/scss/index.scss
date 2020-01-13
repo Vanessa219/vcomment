@@ -91,6 +91,16 @@ $popItemColor: #616161 !default;
     height: 5px;
   }
 
+  &__input {
+    margin-left: 10px;
+    align-self: center;
+    color: #4285f4;
+    cursor: pointer;
+    &:hover {
+      color: $fade
+    }
+  }
+
   &__btn {
     cursor: pointer;
     color: #fff;
@@ -128,7 +138,7 @@ $popItemColor: #616161 !default;
       border: 0;
 
       &:hover {
-        color: #000;
+        color: #586069;
       }
     }
   }
@@ -137,6 +147,10 @@ $popItemColor: #616161 !default;
     cursor: pointer;
     color: $gray;
     font-size: 12px;
+
+    &:hover {
+      color: #586069;
+    }
   }
 
   &__none {
