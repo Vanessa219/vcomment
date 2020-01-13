@@ -149,7 +149,7 @@ interface IOptions {
     vditor?: {
         hljsEnable: boolean,
         hljsStyle: string,
-        emoji: { [key: string]: string }
+        emoji?: { [key: string]: string }
     };
     commentVditor?: Vditor;
 }

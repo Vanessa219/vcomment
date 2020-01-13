@@ -41,11 +41,12 @@ export const commentMenu = (options: IOptions) => {
 
         const $actionPanel = $(this).closest("li").find(".commentActionPanel");
 
-        $actionPanel.html(`<div class="">
+        $actionPanel.html(`<div class="vcomment__comment2-form">
     <div class="vcomment__flex">
-      <input class="input" type="text" placeholder="评论内容长度 4-4096">
-      <button class="comment2SubmitBtn vcomment__btn">提交</button>
+      <input class="vcomment__input" type="text" placeholder="评论内容长度 4-4096">
+      <button class="comment2SubmitBtn vcomment__btn vcomment__btn--comment2">提交</button>
     </div>
+    <div class="vcomment__hr"></div>
     <div class="vcomment__meta">
      仅支持_斜体_、**加粗**以及超链接，请浏览<a href="https://hacpai.com/article/1555259445024" target="_blank">使用场景说明</a>了解更多细节
     </div>

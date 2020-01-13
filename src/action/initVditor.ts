@@ -4,6 +4,10 @@ import {addComment} from "./addComment";
 import {commentToggle} from "./commentToggle";
 
 export const initVditor = (options: IOptions) => {
+    if (options.commentVditor) {
+        return
+    }
+
     Util.addScript(
         "https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/index.min.js",
         "vditorScript");

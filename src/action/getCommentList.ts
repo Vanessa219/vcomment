@@ -14,6 +14,8 @@ export const getCommentList = (options: IOptions) => {
             lazyloadImg(options.id);
             Util.parseLanguage();
             Util.parseMarkdown();
+
+            options.commentVditor = null;
         },
         url: `${options.url}/apis/vcomment?id=${options.postId}&p=${options.currentPage}`,
         xhrFields: {
