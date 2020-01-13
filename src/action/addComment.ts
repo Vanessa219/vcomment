@@ -25,7 +25,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
         commentOriginalCommentId: "",
     };
 
-    const $replyUseName = $("#replyUseName");
+    const $replyUseName = $("#vcommentReplyUseName");
     // reply cmt
     if ($replyUseName.data("commentOriginalCommentId")) {
         requestJSONObject.commentOriginalCommentId = $replyUseName.data("commentOriginalCommentId");

@@ -111,35 +111,61 @@ export const commentList = (options: IOptions) => {
             $it.html(
                 "展开").data("type", "fold");
         }
-    }).on("click", ".commentHideSubmitBtn", function() {
+    }).on("click", ".comment2SubmitBtn", function() {
         const $btn = $(this);
+
         if ($btn.attr("disabled") === "disabled") {
             return;
         }
 
         $btn.attr("disabled", "disabled");
 
-        const commentId = $btn.closest("li").attr("id");
+        let type = "POST";
+        let id = "";
+        let data = JSON.stringify({
+            comment2Content: $btn.prev().val(),
+            commentId: $btn.closest("li").attr("id"),
+        });
+        if ($btn.prev().data("id")) {
+            type = "PUT";
+            id = "/" + $btn.prev().data("id");
+            data = JSON.stringify({
+                comment2Content: $btn.prev().val(),
+            });
+        }
+
         $.ajax({
-            cache: false,
-            data: JSON.stringify({
-                commentId,
-                commentStatus: $btn.prev().val(),
-            }),
+            complete: () => {
+                $btn.removeAttr("disabled");
+            },
+            data,
             headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
-            type: "POST",
-            url: `${options.url}/comment/hide`,
+            type,
+            url: options.url + "/apis/vcomment/vcomment2" + id,
             success(result) {
                 if (result.code !== 0) {
                     alertMsg(result.msg);
                     return;
                 }
 
-                document.getElementById(commentId).outerHTML = result.data.html;
+                if (type === "PUT") {
+                    // update comment2
+                    $btn.closest(".comment2Item")[0].outerHTML = result.data.html;
+                } else {
+                    $btn.closest("li").find(".comment2").append(result.data.html);
+
+                    if ($btn.closest(".comment2Form").length === 1) {
+                        // at
+                        $btn.closest(".comment2__form").remove();
+                    } else {
+                        // comment2
+                        $btn.closest("li").find(".commentActionPanel").slideUp();
+                    }
+                }
                 lazyloadImg(options.id);
             },
-            complete() {
-                $btn.removeAttr("disabled");
+            xhrFields: {
+                withCredentials: true,
             },
         });
     });

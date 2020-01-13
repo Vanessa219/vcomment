@@ -5,7 +5,7 @@ import {commentToggle} from "./commentToggle";
 
 export const initVditor = (options: IOptions) => {
     if (options.commentVditor) {
-        return
+        return;
     }
 
     Util.addScript(
