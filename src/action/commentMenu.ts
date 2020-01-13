@@ -5,6 +5,16 @@ import {lazyloadImg} from "../util/lazyloadImg";
 import {commentToggle} from "./commentToggle";
 
 export const commentMenu = (options: IOptions) => {
+    const comment2FormHTML = `<div class="vcomment__comment2-form">
+    <div class="vcomment__flex">
+      <input class="vcomment__input" type="text" placeholder="评论内容长度 4-4096">
+      <button class="comment2SubmitBtn vcomment__btn vcomment__btn--comment2">提交</button>
+    </div>
+    <div class="vcomment__hr"></div>
+    <div class="vcomment__meta">
+     仅支持_斜体_、**加粗**以及超链接，请浏览<a href="https://hacpai.com/article/1555259445024" target="_blank">使用场景说明</a>了解更多细节
+    </div>
+</div>`;
     $(`#${options.id}`).on("click", ".commentMenuBtn", function() {
         if (!$(`#${options.id} .vcomment`).data("login")) {
             goLogin(options.url);
@@ -41,16 +51,7 @@ export const commentMenu = (options: IOptions) => {
 
         const $actionPanel = $(this).closest("li").find(".commentActionPanel");
 
-        $actionPanel.html(`<div class="vcomment__comment2-form">
-    <div class="vcomment__flex">
-      <input class="vcomment__input" type="text" placeholder="评论内容长度 4-4096">
-      <button class="comment2SubmitBtn vcomment__btn vcomment__btn--comment2">提交</button>
-    </div>
-    <div class="vcomment__hr"></div>
-    <div class="vcomment__meta">
-     仅支持_斜体_、**加粗**以及超链接，请浏览<a href="https://hacpai.com/article/1555259445024" target="_blank">使用场景说明</a>了解更多细节
-    </div>
-</div>`).slideDown();
+        $actionPanel.html(comment2FormHTML).slideDown();
         $actionPanel.find("input").focus();
     }).on("click", ".commentThankBtn", function() {
         const $btn = $(this);
@@ -159,6 +160,35 @@ export const commentMenu = (options: IOptions) => {
                     withCredentials: true,
                 },
             });
+        });
+    }).on("click", ".comment2at", function() {
+        const $it = $(this);
+        const $item = $it.closest(".comment2Item");
+        if ($item.find(".vcomment__comment2-form").length === 0) {
+            $item.find(".comment2Form")
+                .html(comment2FormHTML).find("input").val($it.text()).focus();
+        } else {
+            $item.find("input").focus();
+        }
+    }).on("click", ".comment2Edit", function() {
+        const $item = $(this).closest(".comment2Item");
+        if ($item.find(".vcomment__comment2-form").length === 1) {
+            $item.find(".vcomment__comment2-form").remove();
+            return;
+        }
+        $item.find(".comment2Form").html(comment2FormHTML);
+        $.ajax({
+            url: `${options.url}/apis/vcomment2/update/${$item.data("id")}`,
+            success(result) {
+                if (result.sc === 0) {
+                    $item.find("input").val(result.data.comment2Content).data("id", result.data.oId).focus();
+                } else {
+                    alertMsg(result.msg);
+                }
+            },
+            xhrFields: {
+                withCredentials: true,
+            },
         });
     });
 };
