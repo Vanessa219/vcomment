@@ -9,7 +9,7 @@
 * 安装依赖
 
 ```shell
-npm install vcomment --save
+npm install vcmt --save
 ```
 
 * 在代码中引入并初始化对象，可参考 [index.js](https://github.com/Vanessa219/vcomment/blob/master/demo/index.js)
@@ -36,8 +36,8 @@ vcomment.render()
 * 在 HTML 中插入 js
 
 ```html
-<!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vcomment@x.x.x/dist... -->
-<script src="https://cdn.jsdelivr.net/npm/vcomment/dist/index.min.js" defer></script>
+<!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vcmt@x.x.x/dist... -->
+<script src="https://cdn.jsdelivr.net/npm/vcmt/dist/index.min.js" defer></script>
 ```
 
 ### 示例代码
