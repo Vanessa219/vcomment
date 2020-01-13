@@ -1,5 +1,5 @@
 {
-  "name": "vcomment",
+  "name": "vcmt",
   "version": "1.0.0",
   "description": "Full-featured comment system",
   "main": "dist/index.min.js",
