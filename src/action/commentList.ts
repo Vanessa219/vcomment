@@ -152,7 +152,7 @@ export const commentList = (options: IOptions) => {
                     // update comment2
                     $btn.closest(".comment2Item")[0].outerHTML = result.data.html;
                 } else {
-                    $btn.closest("li").find(".comment2").append(result.data.html);
+                    $btn.closest("li").find(".vcomment-comment2s").append(result.data.html);
 
                     if ($btn.closest(".comment2Form").length === 1) {
                         // at

@@ -67,7 +67,7 @@ export const commentMenu = (options: IOptions) => {
                     $btn.removeAttr("disabled");
                 },
                 data: JSON.stringify({
-                    commentId:     $btn.closest("li").attr("id"),
+                    commentId: $btn.closest("li").attr("id"),
                 }),
                 headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
                 type: "POST",
@@ -94,12 +94,39 @@ export const commentMenu = (options: IOptions) => {
     }).on("click", ".commentRemoveBtn", function() {
         const $it = $(this);
         // removeComment($it.closest("li").attr("id"), options && options.removeCmt);
+        if (!$(`#${options.id} .vcomment`).data("login")) {
+            goLogin(options.url);
+            return;
+        }
+
+        const id = $it.closest("li").attr("id");
+        confirmMsg("确定删除么？", () => {
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: options.url + "/comment/" + id + "/remove",
+                success(result) {
+                    if (result.sc === 0) {
+                        $("#" + id).remove();
+                        const $cnt = $("#commentsCount");
+                        $cnt.text((parseInt($cnt.first().text(), 10) - 1) || "");
+                    } else {
+                        alertMsg(result.msg);
+                    }
+                },
+            });
+        });
     }).on("click", ".commentEditBtn", function() {
         const $it = $(this);
         commentToggle(options, $it.closest("li").attr("id"));
-        // getComment($it.closest("li").attr("id"), (result) => {
-        //     window.commentEditor.setValue(result.commentContent);
-        //     $("#commentVisible").prop("checked", result.commentVisible !== 0);
-        // });
+        $.ajax({
+            cache: false,
+            url: options.url + "/apis/vcomment/" + $it.closest("li").attr("id") + "/content",
+            success(result) {
+                if (result.sc === 0) {
+                    options.commentVditor.setValue(result.commentContent);
+                }
+            },
+        });
     });
 };
