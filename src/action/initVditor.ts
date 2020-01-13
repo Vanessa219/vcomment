@@ -3,7 +3,7 @@ import {lazyloadImg} from "../util/lazyloadImg";
 import {addComment} from "./addComment";
 import {commentToggle} from "./commentToggle";
 
-export const initVditor = (options: IOptions) => {
+export const initVditor = (options: IOptions, defaultValue: string = "") => {
     if (options.commentVditor) {
         return;
     }
@@ -44,6 +44,7 @@ export const initVditor = (options: IOptions) => {
         ctrlEnter() {
             addComment(options, $commentSubmitBtn);
         },
+        defaultValue,
         esc() {
             commentToggle(options);
         },

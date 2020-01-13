@@ -2,7 +2,8 @@ import {alertMsg} from "../util/alertMst";
 import {goLogin} from "../util/goLogin";
 import {initVditor} from "./initVditor";
 
-export const commentToggle = (options: IOptions, id?: string, name?: string, avatar?: string) => {
+export const commentToggle = (options: IOptions, id?: string, name?: string,
+                              avatar?: string, defaultValue?: string) => {
     if (!$(`#${options.id} .vcomment`).data("login")) {
         goLogin(options.url);
         return;
@@ -51,7 +52,7 @@ export const commentToggle = (options: IOptions, id?: string, name?: string, ava
     }
     $editorPanel.show();
     $editorContent.slideDown(() => {
-        initVditor(options);
+        initVditor(options, defaultValue);
     });
 
     // 回复的回帖高亮

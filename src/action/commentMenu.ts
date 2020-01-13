@@ -121,13 +121,13 @@ export const commentMenu = (options: IOptions) => {
         });
     }).on("click", ".commentEditBtn", function() {
         const $it = $(this);
-        commentToggle(options, $it.closest("li").attr("id"));
         $.ajax({
             cache: false,
-            url: options.url + "/apis/vcomment/vcomment" + $it.closest("li").attr("id") + "/content",
+            url: options.url + "/apis/vcomment/vcomment/" + $it.closest("li").attr("id") + "/content",
             success(result) {
                 if (result.sc === 0) {
-                    options.commentVditor.setValue(result.commentContent);
+                    commentToggle(options, $it.closest("li").attr("id"),
+                        "", "", result.commentContent);
                 }
             },
             xhrFields: {
