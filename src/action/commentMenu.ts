@@ -103,8 +103,8 @@ export const commentMenu = (options: IOptions) => {
         confirmMsg("确定删除么？", () => {
             $.ajax({
                 cache: false,
-                type: "POST",
-                url: options.url + "/apis/vcomment/" + id + "/remove",
+                type: "DELETE",
+                url: options.url + "/apis/vcomment/" + id,
                 success(result) {
                     if (result.sc === 0) {
                         $("#" + id).remove();

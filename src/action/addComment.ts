@@ -36,7 +36,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
     const commentId = $replyUseName.data("commentId");
     // edit
     if (commentId) {
-        url = options.url + "/apis/vcomment/vcomment/" + commentId;
+        url = options.url + "/apis/vcomment/" + commentId;
         type = "PUT";
     }
 

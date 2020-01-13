@@ -5,6 +5,10 @@ import {commentToggle} from "./commentToggle";
 
 export const initVditor = (options: IOptions, defaultValue: string = "") => {
     if (options.commentVditor) {
+        if (defaultValue) {
+            options.commentVditor.setValue(defaultValue);
+        }
+        options.commentVditor.focus();
         return;
     }
 
@@ -35,16 +39,20 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
 
     const vditorOptions = {
         after() {
-            const comments = JSON.parse(localStorage.getItem("comments") || "{}");
-            options.commentVditor.setValue(comments[options.postId] || "");
-            options.commentVditor.focus();
+            if (defaultValue) {
+                options.commentVditor.setValue(defaultValue);
+                options.commentVditor.focus();
+            } else {
+                const comments = JSON.parse(localStorage.getItem("comments") || "{}");
+                options.commentVditor.setValue(comments[options.postId] || "");
+                options.commentVditor.focus();
+            }
         },
         cache: false,
         counter: 4096,
         ctrlEnter() {
             addComment(options, $commentSubmitBtn);
         },
-        defaultValue,
         esc() {
             commentToggle(options);
         },
