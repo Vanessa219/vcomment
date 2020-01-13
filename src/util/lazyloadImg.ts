@@ -13,7 +13,7 @@ export const lazyloadImg = (id: string) => {
                 !it.getAttribute("width") && !it.getAttribute("height")) {
                 if (testImage.naturalHeight > testImage.naturalWidth &&
                     testImage.naturalWidth / testImage.naturalHeight <
-                    document.querySelector(`#comments .vditor-reset`).clientWidth / (window.innerHeight - 40) &&
+                    document.querySelector(`#${id} .vditor-reset`).clientWidth / (window.innerHeight - 40) &&
                     testImage.naturalHeight > (window.innerHeight - 40)) {
                     it.style.height = (window.innerHeight - 40) + "px";
                 }
@@ -25,9 +25,9 @@ export const lazyloadImg = (id: string) => {
     };
 
     if (!("IntersectionObserver" in window)) {
-        document.getElementById(id).querySelectorAll("img").forEach(function() {
-            if (this.getAttribute("data-src")) {
-                loadImg(this);
+        document.getElementById(id).querySelectorAll("img").forEach((imgElement) =>  {
+            if (imgElement.getAttribute("data-src")) {
+                loadImg(imgElement);
             }
         });
         return false;
@@ -35,8 +35,8 @@ export const lazyloadImg = (id: string) => {
 
     if (window.vcommentImageIntersectionObserver) {
         window.vcommentImageIntersectionObserver.disconnect();
-        document.getElementById(id).querySelectorAll("img").forEach(function() {
-            window.vcommentImageIntersectionObserver.observe(this);
+        document.getElementById(id).querySelectorAll("img").forEach((imgElement) => {
+            window.vcommentImageIntersectionObserver.observe(imgElement);
         });
     } else {
         window.vcommentImageIntersectionObserver = new IntersectionObserver((entries) => {

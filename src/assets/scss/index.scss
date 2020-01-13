@@ -91,6 +91,54 @@ $popItemColor: #616161 !default;
     height: 5px;
   }
 
+  &__btn {
+    cursor: pointer;
+    color: #fff;
+    background-color: #60b044;
+    border-radius: 3px;
+    padding: 6px 12px;
+    border: 1px solid #569e3d;
+    box-sizing: border-box;
+    line-height: 20px;
+    white-space: nowrap;
+    display: inline-block;
+    font-size: 14px;
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      text-decoration: none;
+      border-color: #eee;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.25) inset;
+    }
+
+    &--cancel {
+      background-color: transparent;
+      color: $gray;
+      border: 0;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+
+  &__pointer {
+    cursor: pointer;
+    color: $gray;
+    font-size: 12px;
+  }
+
   &__none {
     display: none;
   }
@@ -106,7 +154,6 @@ $popItemColor: #616161 !default;
   &__gray {
     color: $gray;
   }
-
 
   &__meta {
     font-size: 12px;
@@ -168,6 +215,8 @@ $popItemColor: #616161 !default;
       width: 100%;
       box-sizing: border-box;
       word-break: break-all;
+      cursor: pointer;
+      font-size: 12px;
 
       &:hover,
       &--current {
@@ -212,6 +261,12 @@ $popItemColor: #616161 !default;
     width: 48px;
     border-radius: 6px;
     margin-right: 10px;
+
+    &--small {
+      height: 20px;
+      width: 20px;
+      margin-right: 5px;
+    }
   }
 
   &__avatarlink {
@@ -223,5 +278,72 @@ $popItemColor: #616161 !default;
     margin-top: 5px;
     border-top: 1px solid $border;
     padding-top: 5px;
+  }
+
+  &__paginations {
+    .vcomment__svg {
+      height: 14px;
+      width: 14px;
+    }
+  }
+
+  &__pagination--disabled {
+    cursor: not-allowed;
+    color: $fade;
+  }
+
+  .commentOriginal {
+    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
+    margin-bottom: 10px;
+  }
+
+  .commentActionPanel {
+    box-shadow: 0 3px 12px rgba(27, 31, 35, 0.15);
+  }
+
+  &__editor {
+    display: none;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    top: 0;
+
+    &-main {
+      display: none;
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      bottom: 0;
+      background-color: $blue-lighter;
+      z-index: 201;
+      padding: 20px 0;
+      left: 0;
+    }
+
+    &-content {
+      max-width: 768px;
+      padding: 10px;
+      margin: 0 auto;
+
+      #vcommentVditor {
+        background-color: #fff;
+        height: 200px;
+      }
+    }
+  }
+
+  &__bg {
+    background-color: #000;
+    height: 100%;
+    opacity: 0.48;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 200;
+    animation-duration: .38s;
+    animation-name: fadeIn;
+    animation-timing-function: ease-in;
   }
 }

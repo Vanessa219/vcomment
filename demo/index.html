@@ -19,7 +19,8 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png"/>
     <link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png">
-    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png">
     <meta name="copyright" content="B3log"/>
     <meta http-equiv="Window-target" content="_top"/>
     <meta property="og:locale" content="zh-cmn-Hans"/>
@@ -34,10 +35,20 @@
     <meta name="twitter:url" content="https://www.npmjs.com/package/vcomment"/>
     <meta property="og:image" content="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png"/>
     <meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/vditor@2.0.11/dist/images/emoji/b3log.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/method.min.js"></script>
+    <script src="demo/solo/common.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vditor@latest/dist/index.classic.css"/>
 </head>
 <body>
 <h2>vcomment for you</h2>
-<div id="comments"></div>
+<div id="comments" style="margin: 0 auto; max-width: 768px"></div>
+<script>
+  const Label = {
+    luteAvailable: true,
+    hljsStyle: "monokai",
+    langLabel: "zh_CN",
+  }
+</script>
 </body>
 </html>
