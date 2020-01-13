@@ -12,7 +12,7 @@ export const initVditor = (options: IOptions) => {
     $.ajax({
         async: false,
         cache: true,
-        url: `${options.url}/apis/users/emotions`,
+        url: `${options.url}/apis/vcomments/users/emotions`,
         success(result) {
             if (Array.isArray(result.data)) {
                 result.data.forEach((item: { [key: string]: string }) => {
