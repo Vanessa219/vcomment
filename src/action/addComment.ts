@@ -59,7 +59,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
                     Util.parseLanguage();
                     Util.parseMarkdown();
                 } else {
-                    getCommentList(this.options);
+                    getCommentList(options);
                 }
 
                 // hide comment panel

@@ -51,11 +51,7 @@ export const commentToggle = (options: IOptions, id?: string, name?: string, ava
     }
     $editorPanel.show();
     $editorContent.slideDown(() => {
-        if (options.commentVditor) {
-            options.commentVditor.focus();
-        } else {
-            initVditor(options);
-        }
+        initVditor(options);
     });
 
     // 回复的回帖高亮

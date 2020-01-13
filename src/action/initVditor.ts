@@ -8,23 +8,24 @@ export const initVditor = (options: IOptions) => {
         "https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/index.min.js",
         "vditorScript");
 
-    const emoji: { [key: string]: string } = {};
-    $.ajax({
-        async: false,
-        cache: true,
-        url: `${options.url}/apis/vcomment/users/emotions`,
-        success(result) {
-            if (Array.isArray(result.data)) {
-                result.data.forEach((item: { [key: string]: string }) => {
-                    const key = Object.keys(item)[0];
-                    emoji[key] = item[key];
-                });
-            }
-        },
-        xhrFields: {
-            withCredentials: true,
-        },
-    });
+    if (!options.vditor.emoji) {
+        $.ajax({
+            async: false,
+            cache: true,
+            url: `${options.url}/apis/vcomment/users/emotions`,
+            success(result) {
+                if (Array.isArray(result.data)) {
+                    result.data.forEach((item: { [key: string]: string }) => {
+                        const key = Object.keys(item)[0];
+                        options.vditor.emoji[key] = item[key];
+                    });
+                }
+            },
+            xhrFields: {
+                withCredentials: true,
+            },
+        });
+    }
 
     const $commentSubmitBtn = $("#commentSubmitBtn");
 
@@ -79,7 +80,7 @@ export const initVditor = (options: IOptions) => {
                 });
                 return atUsers;
             },
-            emoji,
+            emoji: options.vditor.emoji,
             emojiTail: `<a href="${options.url}/settings/function" target="_blank">设置常用表情</a>`,
         },
         lang: "zh_CN",
@@ -91,7 +92,7 @@ export const initVditor = (options: IOptions) => {
                 style: options.vditor.hljsStyle,
             },
             mode: "editor",
-            url: `${options.url}/markdown`,
+            url: `${options.url}/apis/vcomment/markdown`,
             parse(element: HTMLElement) {
                 if (element.style.display === "none") {
                     return;
