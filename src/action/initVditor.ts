@@ -17,7 +17,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         "vditorScript");
 
     if (!options.vditor.emoji) {
-        options.vditor.emoji = {}
+        options.vditor.emoji = {};
         $.ajax({
             async: false,
             cache: true,
