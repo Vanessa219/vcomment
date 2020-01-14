@@ -2,7 +2,7 @@
  * @fileoverview webpack.
  *
  * @author <a href="http://vanessa.b3log.org">Liyuan Li</a>
- * @version 0.1.0.0, Jan 11, 2020
+ * @version 0.1.1.0, Jan 14, 2020
  */
 
 const path = require('path')
@@ -58,6 +58,9 @@ module.exports = [
           test: /\.scss$/,
           include: [path.resolve(__dirname, 'src/assets')],
           use: [
+            {
+              loader: 'style-loader',
+            },
             {
               loader: 'css-loader', // translates CSS into CommonJS
               options: {

@@ -34,7 +34,7 @@ vcomment.render()
 
 ### HTML script
 
-* 在 HTML 中插入 js
+* 在 HTML 中插入 js，* 在代码中引入并初始化对象，可参考 [index-static.html](https://github.com/Vanessa219/vcomment/blob/master/demo/index-static.html)
 
 ```html
 <!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vcmt@x.x.x/dist... -->
