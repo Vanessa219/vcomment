@@ -17,13 +17,10 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         "vditorScript");
 
     if (!options.vditor.emoji) {
+        options.vditor.emoji = {}
         $.ajax({
             async: false,
             cache: true,
-            headers: {
-                "X-B3-UA": "vcomment",
-                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
-            },
             url: `${options.url}/apis/vcomment/users/emotions`,
             success(result) {
                 if (Array.isArray(result.data)) {
@@ -72,10 +69,6 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 $.ajax({
                     async: false,
                     data: JSON.stringify({name: key}),
-                    headers: {
-                        "X-B3-UA": "vcomment",
-                        "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
-                    },
                     type: "POST",
                     url: `${options.url}/apis/vcomment/users/names`,
                     success(result) {

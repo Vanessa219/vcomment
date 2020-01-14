@@ -6,7 +6,7 @@ export const mergeOptions = (options: IOptions) => {
         url: "https://hacpai.com",
         userName: "",
         vditor: {
-            emoji: {},
+            emoji: null,
             hljsEnable: true,
             hljsStyle: "github",
         },
