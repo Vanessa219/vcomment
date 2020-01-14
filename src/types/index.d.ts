@@ -144,6 +144,7 @@ interface IResponse {
 interface IOptions {
     id: string;
     postId?: string;
+    userName?: string;
     url?: string;
     currentPage?: number;
     vditor?: {

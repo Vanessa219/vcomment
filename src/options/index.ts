@@ -2,7 +2,9 @@ export const mergeOptions = (options: IOptions) => {
     const defaultOptions: IOptions = {
         currentPage: 1,
         id: "",
+        postId: "",
         url: "https://hacpai.com",
+        userName: "",
         vditor: {
             emoji: {},
             hljsEnable: true,

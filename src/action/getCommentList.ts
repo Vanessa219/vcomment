@@ -19,7 +19,7 @@ export const getCommentList = (options: IOptions) => {
             initPagination(options);
             options.commentVditor = null;
         },
-        url: `${options.url}/apis/vcomment?id=${options.postId}&p=${options.currentPage}`,
+        url: `${options.url}/apis/vcomment?aid=${options.postId}&p=${options.currentPage}&un=${options.userName}`,
         xhrFields: {
             withCredentials: true,
         },

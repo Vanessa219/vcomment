@@ -20,6 +20,7 @@ import Vcomment from '../src/index'
 const vcomment = new Vcomment({
   id: 'comments',
   postId: '1353745196751',
+  userName: 'vanessa',
   url: 'http://localhost:8080',
   currentPage: 3,
   vditor: {
@@ -52,6 +53,7 @@ vcomment.render()
 |---|---|---|
 | id| 渲染元素的 id |-|
 | postId| 文章 id |-|
+| userName| 用户名 |-|
 | url| 评论 API 地址 |"https://hacpai.com"|
 | currentPage| 评论页码|1|
 |vditor|编辑器参数|-|
