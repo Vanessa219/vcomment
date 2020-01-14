@@ -18,6 +18,10 @@ export const getCommentList = (options: IOptions) => {
             Util.parseMarkdown();
             initPagination(options);
             options.commentVditor = null;
+            if (options.currentPage === 1) {
+                return;
+            }
+            $("html, body").animate({scrollTop: $(`#${options.id}`).offset().top}, 800);
         },
         url: `${options.url}/apis/vcomment?aid=${options.postId}&p=${options.currentPage}&un=${options.userName}`,
     });

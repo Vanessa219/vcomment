@@ -244,7 +244,7 @@ $popItemColor: #616161 !default;
       height: 1px;
     }
 
-    .item {
+    &-item {
       display: block;
       text-shadow: 0 1px 0 #fff;
       position: relative;
@@ -257,15 +257,14 @@ $popItemColor: #616161 !default;
       cursor: pointer;
       font-size: 12px;
 
-      &:hover,
-      &--current {
+      &:hover {
         text-decoration: none;
         background-color: $popItemHoverBg;
         color: $popItemHoverColor !important;
         text-shadow: none;
       }
 
-      &--warn.item {
+      &--warn {
         color: $red;
 
         &:hover {
