@@ -30,6 +30,10 @@ export const commentMenu = (options: IOptions) => {
         $btn.attr("disabled", "disabled");
         $.ajax({
             cache: false,
+            headers: {
+                "X-B3-UA": "vcomment",
+                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+            },
             url: `${options.url}/apis/vcomment/action?id=${$btn.closest("li").attr("id")}`,
             complete(result) {
                 $btn.removeAttr("disabled");
@@ -38,9 +42,6 @@ export const commentMenu = (options: IOptions) => {
                 } else {
                     alertMsg(result.responseJSON.msg);
                 }
-            },
-            xhrFields: {
-                withCredentials: true,
             },
         });
     }).on("click", ".comment2Btn", function() {
@@ -70,7 +71,10 @@ export const commentMenu = (options: IOptions) => {
                 data: JSON.stringify({
                     commentId: $btn.closest("li").attr("id"),
                 }),
-                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                headers: {
+                    "X-B3-UA": "vcomment",
+                    "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+                },
                 type: "POST",
                 url: options.url + "/apis/vcomment/thank",
                 success(result) {
@@ -82,9 +86,6 @@ export const commentMenu = (options: IOptions) => {
                     lazyloadImg(options.id);
                     Util.parseLanguage();
                     Util.parseMarkdown();
-                },
-                xhrFields: {
-                    withCredentials: true,
                 },
             });
         });
@@ -103,6 +104,10 @@ export const commentMenu = (options: IOptions) => {
         confirmMsg("确定删除么？", () => {
             $.ajax({
                 cache: false,
+                headers: {
+                    "X-B3-UA": "vcomment",
+                    "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+                },
                 type: "DELETE",
                 url: options.url + "/apis/vcomment/" + id,
                 success(result) {
@@ -114,24 +119,22 @@ export const commentMenu = (options: IOptions) => {
                         alertMsg(result.msg);
                     }
                 },
-                xhrFields: {
-                    withCredentials: true,
-                },
             });
         });
     }).on("click", ".commentEditBtn", function() {
         const $it = $(this);
         $.ajax({
             cache: false,
+            headers: {
+                "X-B3-UA": "vcomment",
+                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+            },
             url: options.url + "/apis/vcomment/vcomment/" + $it.closest("li").attr("id") + "/content",
             success(result) {
                 if (result.sc === 0) {
                     commentToggle(options, $it.closest("li").attr("id"),
                         "", "", result.commentContent);
                 }
-            },
-            xhrFields: {
-                withCredentials: true,
             },
         });
     }).on("click", ".comment2Thank", function() {
@@ -145,7 +148,10 @@ export const commentMenu = (options: IOptions) => {
                 data: JSON.stringify({
                     comment2Id: $btn.closest(".comment2Item").data("id"),
                 }),
-                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                headers: {
+                    "X-B3-UA": "vcomment",
+                    "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+                },
                 type: "POST",
                 url: `${options.url}/apis/vcomment2/thank`,
                 success(result) {
@@ -154,9 +160,6 @@ export const commentMenu = (options: IOptions) => {
                     } else {
                         alertMsg(result.msg);
                     }
-                },
-                xhrFields: {
-                    withCredentials: true,
                 },
             });
         });
@@ -177,6 +180,10 @@ export const commentMenu = (options: IOptions) => {
         }
         $item.find(".comment2Form").html(comment2FormHTML);
         $.ajax({
+            headers: {
+                "X-B3-UA": "vcomment",
+                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+            },
             url: `${options.url}/apis/vcomment2/update/${$item.data("id")}`,
             success(result) {
                 if (result.sc === 0) {
@@ -184,9 +191,6 @@ export const commentMenu = (options: IOptions) => {
                 } else {
                     alertMsg(result.msg);
                 }
-            },
-            xhrFields: {
-                withCredentials: true,
             },
         });
     }).on("click", ".comment2Remove", function() {
@@ -200,7 +204,10 @@ export const commentMenu = (options: IOptions) => {
                 complete: () => {
                     $btn.removeAttr("disabled");
                 },
-                headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+                headers: {
+                    "X-B3-UA": "vcomment",
+                    "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+                },
                 type: "DELETE",
                 url: `${options.url}/apis/vcomment2/${$btn.closest(".comment2Item").data("id")}`,
                 success(result) {
@@ -209,9 +216,6 @@ export const commentMenu = (options: IOptions) => {
                     } else {
                         alertMsg(result.msg);
                     }
-                },
-                xhrFields: {
-                    withCredentials: true,
                 },
             });
         });

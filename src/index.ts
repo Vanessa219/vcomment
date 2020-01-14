@@ -20,6 +20,12 @@ class Vcomment {
         $("body").on("click", ".commentToggleEditorBtn", () => {
             commentToggle(options);
         });
+
+        $.ajaxSetup({
+            xhrFields: {
+                withCredentials: true,
+            },
+        });
     }
 
     public render() {

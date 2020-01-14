@@ -11,7 +11,6 @@ export const getCommentList = (options: IOptions) => {
                 alertMsg(result.msg);
                 return;
             }
-
             document.getElementById(options.id).innerHTML = result.data.html;
             lazyloadImg(options.id);
             Util.parseLanguage();
@@ -20,8 +19,5 @@ export const getCommentList = (options: IOptions) => {
             options.commentVditor = null;
         },
         url: `${options.url}/apis/vcomment?aid=${options.postId}&p=${options.currentPage}&un=${options.userName}`,
-        xhrFields: {
-            withCredentials: true,
-        },
     });
 };

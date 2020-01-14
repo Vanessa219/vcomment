@@ -16,6 +16,10 @@ const showOriginal = (id: string, $content: JQuery, $btn: JQuery, options: IOpti
         data: JSON.stringify({
             commentId: id,
         }),
+        headers: {
+            "X-B3-UA": "vcomment",
+            "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+        },
         type: "POST",
         url: options.url + "/apis/vcomment/original",
         beforeSend() {
@@ -54,6 +58,10 @@ const showComment = (id: string, $content: JQuery, $btn: JQuery, options: IOptio
         data: JSON.stringify({
             commentId: id,
         }),
+        headers: {
+            "X-B3-UA": "vcomment",
+            "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+        },
         type: "POST",
         url: options.url + "/apis/vcomment/replies",
         beforeSend() {
@@ -139,7 +147,10 @@ export const commentList = (options: IOptions) => {
                 $btn.removeAttr("disabled");
             },
             data,
-            headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+            headers: {
+                "X-B3-UA": "vcomment",
+                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+            },
             type,
             url: options.url + "/apis/vcomment2" + id,
             success(result) {
@@ -163,9 +174,6 @@ export const commentList = (options: IOptions) => {
                     }
                 }
                 lazyloadImg(options.id);
-            },
-            xhrFields: {
-                withCredentials: true,
             },
         });
     });

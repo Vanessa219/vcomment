@@ -20,6 +20,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
     }
 
     const requestJSONObject = {
+        articleAuthorName: options.userName,
         articleId: options.postId,
         commentContent: options.commentVditor.getValue(), // 实际提交时不去除空格，因为直接贴代码时需要空格
         commentOriginalCommentId: "",
@@ -43,7 +44,10 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
     $.ajax({
         cache: false,
         data: encodeURIComponent(JSON.stringify(requestJSONObject)),
-        headers: {csrfToken: $(`#${options.id} .vcomment`).data("csrf")},
+        headers: {
+            "X-B3-UA": "vcomment",
+            "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
+        },
         type,
         url,
         beforeSend() {
@@ -81,9 +85,6 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
             if (arguments[0].responseJSON.code === 0) {
                 options.commentVditor.setValue("");
             }
-        },
-        xhrFields: {
-            withCredentials: true,
         },
     });
 };
