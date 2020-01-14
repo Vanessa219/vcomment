@@ -125,10 +125,6 @@ export const commentMenu = (options: IOptions) => {
         const $it = $(this);
         $.ajax({
             cache: false,
-            headers: {
-                "X-B3-UA": "vcomment",
-                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
-            },
             url: options.url + "/apis/vcomment/vcomment/" + $it.closest("li").attr("id") + "/content",
             success(result) {
                 if (result.sc === 0) {
@@ -180,10 +176,6 @@ export const commentMenu = (options: IOptions) => {
         }
         $item.find(".comment2Form").html(comment2FormHTML);
         $.ajax({
-            headers: {
-                "X-B3-UA": "vcomment",
-                "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
-            },
             url: `${options.url}/apis/vcomment2/update/${$item.data("id")}`,
             success(result) {
                 if (result.sc === 0) {
