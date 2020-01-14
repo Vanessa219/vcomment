@@ -1,4 +1,3 @@
-import {alertMsg} from "../util/alertMst";
 import {lazyloadImg} from "../util/lazyloadImg";
 import {initPagination} from "./initPagination";
 
@@ -8,7 +7,9 @@ export const getCommentList = (options: IOptions) => {
         cache: false,
         success: (result: IResponse) => {
             if (result.code !== 0) {
-                alertMsg(result.msg);
+                if (options.error) {
+                    options.error();
+                }
                 return;
             }
             document.getElementById(options.id).innerHTML = result.data.html;

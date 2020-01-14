@@ -153,4 +153,5 @@ interface IOptions {
         emoji?: { [key: string]: string },
     };
     commentVditor?: Vditor;
+    error?: () => void;
 }
