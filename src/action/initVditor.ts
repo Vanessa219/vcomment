@@ -12,9 +12,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         return;
     }
 
-    Util.addScript(
-        "https://cdn.jsdelivr.net/npm/vditor@2.0.15/dist/index.min.js",
-        "vditorScript");
+    Util.addScript(options.vditor.scriptPath, "vditorScript");
 
     if (!options.vditor.emoji) {
         options.vditor.emoji = {};

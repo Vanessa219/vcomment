@@ -148,6 +148,7 @@ interface IOptions {
     url?: string;
     currentPage?: number;
     vditor?: {
+        scriptPath: string,
         hljsEnable: boolean,
         hljsStyle: string,
         emoji?: { [key: string]: string },
