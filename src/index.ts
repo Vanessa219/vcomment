@@ -5,8 +5,8 @@ import {detailsMenu} from "./action/detailsMenu";
 import {getCommentList} from "./action/getCommentList";
 import "./assets/scss/index.scss";
 import {mergeOptions} from "./options";
-import {alertMsg} from "./util/alertMst";
-import {lazyloadImg} from "./util/lazyloadImg";
+import {lazyLoadImage} from "./util/lazyLoadImage";
+import {parseMarkdown} from "./util/parseMarkdown";
 
 class Vcomment {
     private options: IOptions;
@@ -30,6 +30,14 @@ class Vcomment {
 
     public render() {
         getCommentList(this.options);
+    }
+
+    public parseMarkdown(vditorOptions: IOptionsVditor) {
+        parseMarkdown(vditorOptions);
+    }
+
+    public lazyLoadImage() {
+        lazyLoadImage();
     }
 }
 

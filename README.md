@@ -62,12 +62,15 @@ vcomment.render()
 |vditor.hljsEnable|是否启用高亮|true|
 |vditor.hljsStyle|高亮样式|"github"|
 |vditor.emoji|自定义表情 { [key: string]: string }|{}|
+|vditor.lang|语言|'zh_CN'|
 
 #### methods
 
 | |说明|
 |---|---|
 |render|渲染评论|
+|parseMarkdown(vditorOptions: IOptionsVditor)|Markdown 渲染|
+|lazyLoadImage|图片延迟加载|
 
 ## 欢迎关注 B3log 开源社区微信公众号 `B3log开源`
 

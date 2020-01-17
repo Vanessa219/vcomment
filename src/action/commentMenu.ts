@@ -1,7 +1,8 @@
 import {alertMsg} from "../util/alertMst";
 import {confirmMsg} from "../util/confirmMsg";
 import {goLogin} from "../util/goLogin";
-import {lazyloadImg} from "../util/lazyloadImg";
+import {lazyLoadImage} from "../util/lazyLoadImage";
+import {parseMarkdown} from "../util/parseMarkdown";
 import {commentToggle} from "./commentToggle";
 
 export const commentMenu = (options: IOptions) => {
@@ -83,9 +84,8 @@ export const commentMenu = (options: IOptions) => {
                         return;
                     }
                     $btn.closest("li")[0].outerHTML = result.data.html;
-                    lazyloadImg(options.id);
-                    Util.parseLanguage();
-                    Util.parseMarkdown();
+                    lazyLoadImage();
+                    parseMarkdown(options.vditor);
                 },
             });
         });

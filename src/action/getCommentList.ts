@@ -1,4 +1,5 @@
-import {lazyloadImg} from "../util/lazyloadImg";
+import {lazyLoadImage} from "../util/lazyLoadImage";
+import {parseMarkdown} from "../util/parseMarkdown";
 import {initPagination} from "./initPagination";
 
 export const getCommentList = (options: IOptions) => {
@@ -13,9 +14,8 @@ export const getCommentList = (options: IOptions) => {
                 return;
             }
             document.getElementById(options.id).innerHTML = result.data.html;
-            lazyloadImg(options.id);
-            Util.parseLanguage();
-            Util.parseMarkdown();
+            lazyLoadImage();
+            parseMarkdown(options.vditor);
             initPagination(options);
             options.commentVditor = null;
             if (options.currentPage === 1) {

@@ -1,5 +1,6 @@
 import {alertMsg} from "../util/alertMst";
-import {lazyloadImg} from "../util/lazyloadImg";
+import {lazyLoadImage} from "../util/lazyLoadImage";
+import {parseMarkdown} from "../util/parseMarkdown";
 import {commentToggle} from "./commentToggle";
 import {getCommentList} from "./getCommentList";
 
@@ -59,15 +60,13 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
                 if (commentId) {
                     // edit cmt
                     document.getElementById(commentId).outerHTML = result.data.html;
-                    lazyloadImg(options.id);
-                    Util.parseLanguage();
-                    Util.parseMarkdown();
+                    lazyLoadImage();
+                    parseMarkdown(options.vditor);
+                    // hide comment panel
+                    commentToggle(options);
                 } else {
                     getCommentList(options);
                 }
-
-                // hide comment panel
-                commentToggle(options);
 
                 const comments = JSON.parse(localStorage.getItem("comments") || "{}");
                 delete comments[options.postId];

@@ -4,7 +4,7 @@ declare global {
     }
 }
 
-export const lazyloadImg = (id: string) => {
+export const lazyLoadImage = () => {
     const loadImg = (it: HTMLImageElement) => {
         const testImage = document.createElement("img");
         testImage.src = it.getAttribute("data-src");
@@ -13,7 +13,7 @@ export const lazyloadImg = (id: string) => {
                 !it.getAttribute("width") && !it.getAttribute("height")) {
                 if (testImage.naturalHeight > testImage.naturalWidth &&
                     testImage.naturalWidth / testImage.naturalHeight <
-                    document.querySelector(`#${id} .vditor-reset`).clientWidth / (window.innerHeight - 40) &&
+                    document.querySelector(".vditor-reset").clientWidth / (window.innerHeight - 40) &&
                     testImage.naturalHeight > (window.innerHeight - 40)) {
                     it.style.height = (window.innerHeight - 40) + "px";
                 }
@@ -25,7 +25,7 @@ export const lazyloadImg = (id: string) => {
     };
 
     if (!("IntersectionObserver" in window)) {
-        document.getElementById(id).querySelectorAll("img").forEach((imgElement) =>  {
+        document.querySelectorAll(".vditor-reset img").forEach((imgElement: HTMLImageElement) => {
             if (imgElement.getAttribute("data-src")) {
                 loadImg(imgElement);
             }
@@ -35,7 +35,7 @@ export const lazyloadImg = (id: string) => {
 
     if (window.vcommentImageIntersectionObserver) {
         window.vcommentImageIntersectionObserver.disconnect();
-        document.getElementById(id).querySelectorAll("img").forEach((imgElement) => {
+        document.querySelectorAll(".vditor-reset img").forEach((imgElement) => {
             window.vcommentImageIntersectionObserver.observe(imgElement);
         });
     } else {
@@ -49,7 +49,7 @@ export const lazyloadImg = (id: string) => {
                 }
             });
         });
-        document.getElementById(id).querySelectorAll("img").forEach((imgElement) => {
+        document.querySelectorAll(".vditor-reset img").forEach((imgElement) => {
             window.vcommentImageIntersectionObserver.observe(imgElement);
         });
     }

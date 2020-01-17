@@ -1,10 +1,15 @@
 declare module "*/index.scss";
 
-interface IvdtiorHint {
+interface IVdtiorHint {
     userName?: string;
     userAvatarURL?: string;
     value: string;
     html: string;
+}
+
+interface II18nLang {
+    en_US: string;
+    zh_CN: string;
 }
 
 interface IVditorOptions {
@@ -47,7 +52,7 @@ interface IVditorOptions {
         emoji?: { [key: string]: string };
         emojiPath?: string;
 
-        at?(value: string): IvdtiorHint[];
+        at?(value: string): IVdtiorHint[];
     };
     cdn?: string;
     tab?: string;
@@ -66,6 +71,9 @@ interface IVditorOptions {
 }
 
 declare class Vditor {
+    public static speechRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+
+    public static codeRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
 
     public static mathRenderByLute(element: HTMLElement, cdn?: string): void;
 
@@ -79,61 +87,25 @@ declare class Vditor {
 
     public static mediaRender(element: HTMLElement): void;
 
-    public readonly version: string;
+    public static highlightRender(hljsOption?: {
+                                      lineNumber?: boolean;
+                                      style?: string;
+                                      enable?: boolean;
+                                  },
+                                  element?: HTMLElement | Document, cdn?: string): void;
 
     constructor(id: string, options: IVditorOptions)
 
     public getValue(): string;
 
-    public insertValue(value: string): void;
-
     public focus(): void;
-
-    public blur(): void;
 
     public disabled(): void;
 
     public enable(): void;
 
-    public setSelection(start: number, end: number): void;
-
-    public getSelection(): string;
-
     public setValue(markdown: string): void;
-
-    public renderPreview(value?: string): void;
-
-    public getCursorPosition(editor: HTMLPreElement): {
-        left: number,
-        top: number,
-    };
-
-    public deleteValue(): void;
-
-    public updateValue(): string;
-
-    public isUploading(): boolean;
-
-    public clearCache(): void;
-
-    public disabledCache(): void;
-
-    public enableCache(): void;
-
-    public html2md(value: string): string;
-
-    public getHTML(): string;
-
-    public tip(text: string, time?: number): void;
-
-    public setPreviewMode(mode: string): void;
 }
-
-declare const Util: {
-    parseLanguage: () => void
-    parseMarkdown: () => void,
-    addScript: (url: string, id: string) => void,
-};
 
 interface IResponse {
     msg: string;
@@ -147,12 +119,14 @@ interface IOptions {
     userName?: string;
     url?: string;
     currentPage?: number;
-    vditor?: {
-        scriptPath: string,
-        hljsEnable: boolean,
-        hljsStyle: string,
-        emoji?: { [key: string]: string },
-    };
+    vditor?: IOptionsVditor;
     commentVditor?: Vditor;
     error?: () => void;
+}
+
+interface IOptionsVditor {
+    lang: keyof II18nLang;
+    hljsEnable: boolean;
+    hljsStyle: string;
+    emoji?: { [key: string]: string };
 }

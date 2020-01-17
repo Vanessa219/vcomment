@@ -1,5 +1,6 @@
 import {alertMsg} from "../util/alertMst";
-import {lazyloadImg} from "../util/lazyloadImg";
+import {lazyLoadImage} from "../util/lazyLoadImage";
+import {parseMarkdown} from "../util/parseMarkdown";
 
 /**
  * 查看回贴的引用：当回贴 A 被回复了 B，在回贴 B 中可以查看 A
@@ -31,9 +32,8 @@ const showOriginal = (id: string, $content: JQuery, $btn: JQuery, options: IOpti
                 return false;
             }
             $content.html(`<ul class="vcomment__list">${result.cmtTpl}</ul>`).show();
-            lazyloadImg(options.id);
-            Util.parseLanguage();
-            Util.parseMarkdown();
+            lazyLoadImage();
+            parseMarkdown(options.vditor);
         },
         error(result) {
             alertMsg(result.statusText);
@@ -77,9 +77,8 @@ const showComment = (id: string, $content: JQuery, $btn: JQuery, options: IOptio
                 liHTML += data;
             });
             $content.html(`<ul class="vcomment__list">${liHTML}</ul>`).slideDown();
-            lazyloadImg(options.id);
-            Util.parseLanguage();
-            Util.parseMarkdown();
+            lazyLoadImage();
+            parseMarkdown(options.vditor);
         },
         error(result) {
             alertMsg(result.statusText);
@@ -173,7 +172,7 @@ export const commentList = (options: IOptions) => {
                         $btn.closest("li").find(".commentActionPanel").slideUp();
                     }
                 }
-                lazyloadImg(options.id);
+                lazyLoadImage();
             },
         });
     });

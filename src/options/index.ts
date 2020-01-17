@@ -9,7 +9,7 @@ export const mergeOptions = (options: IOptions) => {
             emoji: null,
             hljsEnable: true,
             hljsStyle: "github",
-            scriptPath: "https://cdn.jsdelivr.net/npm/vditor/dist/index.min.js",
+            lang: "zh_CN",
         },
     };
 

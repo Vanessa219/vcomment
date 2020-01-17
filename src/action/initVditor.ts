@@ -1,5 +1,6 @@
 import {alertMsg} from "../util/alertMst";
-import {lazyloadImg} from "../util/lazyloadImg";
+import {lazyLoadImage} from "../util/lazyLoadImage";
+import {parseMarkdown} from "../util/parseMarkdown";
 import {addComment} from "./addComment";
 import {commentToggle} from "./commentToggle";
 
@@ -11,8 +12,6 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         options.commentVditor.focus();
         return;
     }
-
-    Util.addScript(options.vditor.scriptPath, "vditorScript");
 
     if (!options.vditor.emoji) {
         options.vditor.emoji = {};
@@ -63,7 +62,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         height: 200,
         hint: {
             at: (key: string) => {
-                let atUsers: IvdtiorHint[] = [];
+                let atUsers: IVdtiorHint[] = [];
                 $.ajax({
                     async: false,
                     data: JSON.stringify({name: key}),
@@ -71,7 +70,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                     url: `${options.url}/apis/vcomment/users/names`,
                     success(result) {
                         if (result.code === 0) {
-                            atUsers = result.data.map((item: IvdtiorHint) => {
+                            atUsers = result.data.map((item: IVdtiorHint) => {
                                 item.value = `@${item.userName}`;
                                 item.html = `<img src='${item.userAvatarURL}'/> ${item.userName}`;
                                 return item;
@@ -106,9 +105,8 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 if (element.style.display === "none") {
                     return;
                 }
-                lazyloadImg(options.id);
-                Util.parseLanguage();
-                Util.parseMarkdown();
+                lazyLoadImage();
+                parseMarkdown(options.vditor);
             },
         },
         resize: {
