@@ -1,5 +1,3 @@
-import {ServerResponse} from "http";
-import {Http2ServerResponse} from "http2";
 import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {confirmMsg} from "../util/confirmMsg";

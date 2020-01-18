@@ -17,10 +17,11 @@ class Vcomment {
     constructor(options: IOptions) {
         this.options = mergeOptions(options);
         detailsMenu();
+        detailsMenu();
         commentList(options);
         commentMenu(options);
 
-        $("body").on("click", ".commentToggleEditorBtn", () => {
+        $(`#${options.id}`).on("click", ".commentToggleEditorBtn", () => {
             commentToggle(options);
         });
 

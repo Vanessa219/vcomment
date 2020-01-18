@@ -10,6 +10,7 @@ export const detailsMenu = () => {
             $(".details").removeAttr("open");
         }
     });
+    $("body").off("click", ".details summary");
     $("body").on("click", ".details summary", () => {
         $(".details").removeAttr("open");
     });
