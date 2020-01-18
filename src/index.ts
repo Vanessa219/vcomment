@@ -10,8 +10,10 @@ import {lazyLoadImage} from "./util/lazyLoadImage";
 import {parseMarkdown} from "./util/parseMarkdown";
 
 class Vcomment {
-    private options: IOptions;
 
+    public static parseMarkdown = parseMarkdown;
+    public static lazyLoadImage = lazyLoadImage;
+    private options: IOptions;
     constructor(options: IOptions) {
         this.options = mergeOptions(options);
         detailsMenu();
@@ -31,14 +33,6 @@ class Vcomment {
 
     public render() {
         getCommentList(this.options);
-    }
-
-    public parseMarkdown(vditorOptions: IOptionsVditor) {
-        parseMarkdown(vditorOptions);
-    }
-
-    public lazyLoadImage() {
-        lazyLoadImage();
     }
 }
 
