@@ -1,4 +1,42 @@
 declare module "*/index.scss";
+declare module "jquery";
+
+declare class Vditor {
+    public static speechRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+
+    public static codeRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+
+    public static mathRenderByLute(element: HTMLElement, cdn?: string): void;
+
+    public static mathRender(element: HTMLElement, cdn?: string): void;
+
+    public static mermaidRender(element: HTMLElement, className?: string, cdn?: string): void;
+
+    public static chartRender(element?: HTMLElement | Document, cdn?: string): void;
+
+    public static abcRender(element?: HTMLElement | Document, cdn?: string): void;
+
+    public static mediaRender(element: HTMLElement): void;
+
+    public static highlightRender(hljsOption?: {
+                                      lineNumber?: boolean;
+                                      style?: string;
+                                      enable?: boolean;
+                                  },
+                                  element?: HTMLElement | Document, cdn?: string): void;
+
+    constructor(id: string, options: IVditorOptions)
+
+    public getValue(): string;
+
+    public focus(): void;
+
+    public disabled(): void;
+
+    public enable(): void;
+
+    public setValue(markdown: string): void;
+}
 
 interface IVdtiorHint {
     userName?: string;
@@ -70,47 +108,10 @@ interface IVditorOptions {
     select?(value: string): void;
 }
 
-declare class Vditor {
-    public static speechRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
-
-    public static codeRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
-
-    public static mathRenderByLute(element: HTMLElement, cdn?: string): void;
-
-    public static mathRender(element: HTMLElement, cdn?: string): void;
-
-    public static mermaidRender(element: HTMLElement, className?: string, cdn?: string): void;
-
-    public static chartRender(element?: HTMLElement | Document, cdn?: string): void;
-
-    public static abcRender(element?: HTMLElement | Document, cdn?: string): void;
-
-    public static mediaRender(element: HTMLElement): void;
-
-    public static highlightRender(hljsOption?: {
-                                      lineNumber?: boolean;
-                                      style?: string;
-                                      enable?: boolean;
-                                  },
-                                  element?: HTMLElement | Document, cdn?: string): void;
-
-    constructor(id: string, options: IVditorOptions)
-
-    public getValue(): string;
-
-    public focus(): void;
-
-    public disabled(): void;
-
-    public enable(): void;
-
-    public setValue(markdown: string): void;
-}
-
 interface IResponse {
     msg: string;
     code: number;
-    data: { [key: string]: string };
+    data: any;
 }
 
 interface IOptions {

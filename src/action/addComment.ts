@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {lazyLoadImage} from "../util/lazyLoadImage";
 import {parseMarkdown} from "../util/parseMarkdown";
@@ -55,7 +56,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
             $commentBtn.attr("disabled", "disabled");
             options.commentVditor.disabled();
         },
-        success(result) {
+        success(result: IResponse) {
             if (0 === result.code) {
                 if (commentId) {
                     // edit cmt
@@ -75,7 +76,7 @@ export const addComment = (options: IOptions, $commentBtn: JQuery) => {
                 alertMsg(result.msg);
             }
         },
-        error(result) {
+        error(result: Response) {
             alertMsg(result.statusText);
         },
         complete() {

@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {lazyLoadImage} from "../util/lazyLoadImage";
 import {parseMarkdown} from "../util/parseMarkdown";
@@ -26,16 +27,16 @@ const showOriginal = (id: string, $content: JQuery, $btn: JQuery, options: IOpti
         beforeSend() {
             $btn.attr("disabled", "disabled");
         },
-        success(result) {
-            if (!result.sc) {
+        success(result: IResponse) {
+            if (result.code !== 0) {
                 alertMsg(result.msg);
                 return false;
             }
-            $content.html(`<ul class="vcomment__list">${result.cmtTpl}</ul>`).show();
+            $content.html(`<ul class="vcomment__list">${result.data}</ul>`).show();
             lazyLoadImage();
             parseMarkdown(options.vditor);
         },
-        error(result) {
+        error(result: Response) {
             alertMsg(result.statusText);
         },
         complete() {
@@ -67,20 +68,20 @@ const showComment = (id: string, $content: JQuery, $btn: JQuery, options: IOptio
         beforeSend() {
             $btn.attr("disabled", "disabled");
         },
-        success(result) {
-            if (!result.sc) {
+        success(result: IResponse) {
+            if (result.code !== 0) {
                 alertMsg(result.msg);
                 return false;
             }
             let liHTML = "";
-            result.commentReplies.forEach((data: string) => {
+            result.data.forEach((data: string) => {
                 liHTML += data;
             });
             $content.html(`<ul class="vcomment__list">${liHTML}</ul>`).slideDown();
             lazyLoadImage();
             parseMarkdown(options.vditor);
         },
-        error(result) {
+        error(result: Response) {
             alertMsg(result.statusText);
         },
         complete() {
@@ -105,7 +106,7 @@ export const commentList = (options: IOptions) => {
         const isOriginal = $it.closest(".commentOriginal").length === 1;
         let $commentHides = $it.closest(".commentOriginal").find(".commentHide");
         if (!isOriginal) {
-            $commentHides = $it.closest("li").find(".commentHide").filter((i, e) => {
+            $commentHides = $it.closest("li").find(".commentHide").filter((i: number, e: HTMLElement) => {
                 return $(e).closest(".commentOriginal").length === 0;
             });
         }
@@ -152,7 +153,7 @@ export const commentList = (options: IOptions) => {
             },
             type,
             url: options.url + "/apis/vcomment2" + id,
-            success(result) {
+            success(result: IResponse) {
                 if (result.code !== 0) {
                     alertMsg(result.msg);
                     return;

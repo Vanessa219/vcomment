@@ -1,3 +1,6 @@
+import {ServerResponse} from "http";
+import {Http2ServerResponse} from "http2";
+import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {confirmMsg} from "../util/confirmMsg";
 import {goLogin} from "../util/goLogin";
@@ -36,13 +39,16 @@ export const commentMenu = (options: IOptions) => {
                 "csrfToken": $(`#${options.id} .vcomment`).data("csrf"),
             },
             url: `${options.url}/apis/vcomment/action?id=${$btn.closest("li").attr("id")}`,
-            complete(result) {
+            success(result: IResponse) {
                 $btn.removeAttr("disabled");
-                if (result.responseJSON.code === 0) {
-                    $btn.closest("details").find("details-menu").html(result.responseJSON.data);
+                if (result.code === 0) {
+                    $btn.closest("details").find("details-menu").html(result.data);
                 } else {
-                    alertMsg(result.responseJSON.msg);
+                    alertMsg(result.msg);
                 }
+            },
+            error(result: Response) {
+                alertMsg(result.statusText);
             },
         });
     }).on("click", ".comment2Btn", function() {
@@ -78,7 +84,7 @@ export const commentMenu = (options: IOptions) => {
                 },
                 type: "POST",
                 url: options.url + "/apis/vcomment/thank",
-                success(result) {
+                success(result: IResponse) {
                     if (result.code !== 0) {
                         alertMsg(result.msg);
                         return;
@@ -110,8 +116,8 @@ export const commentMenu = (options: IOptions) => {
                 },
                 type: "DELETE",
                 url: options.url + "/apis/vcomment/" + id,
-                success(result) {
-                    if (result.sc === 0) {
+                success(result: IResponse) {
+                    if (result.code === 0) {
                         $("#" + id).remove();
                         const $cnt = $("#commentsCount");
                         $cnt.text((parseInt($cnt.first().text(), 10) - 1) || "");
@@ -126,10 +132,10 @@ export const commentMenu = (options: IOptions) => {
         $.ajax({
             cache: false,
             url: options.url + "/apis/vcomment/vcomment/" + $it.closest("li").attr("id") + "/content",
-            success(result) {
-                if (result.sc === 0) {
+            success(result: IResponse) {
+                if (result.code === 0) {
                     commentToggle(options, $it.closest("li").attr("id"),
-                        "", "", result.commentContent);
+                        "", "", result.data.commentContent);
                 }
             },
         });
@@ -150,7 +156,7 @@ export const commentMenu = (options: IOptions) => {
                 },
                 type: "POST",
                 url: `${options.url}/apis/vcomment2/thank`,
-                success(result) {
+                success(result: IResponse) {
                     if (result.code === 0) {
                         $btn.closest(".comment2Item")[0].outerHTML = result.data.html;
                     } else {
@@ -177,8 +183,8 @@ export const commentMenu = (options: IOptions) => {
         $item.find(".comment2Form").html(comment2FormHTML);
         $.ajax({
             url: `${options.url}/apis/vcomment2/update/${$item.data("id")}`,
-            success(result) {
-                if (result.sc === 0) {
+            success(result: IResponse) {
+                if (result.code === 0) {
                     $item.find("input").val(result.data.comment2Content).data("id", result.data.oId).focus();
                 } else {
                     alertMsg(result.msg);
@@ -202,8 +208,8 @@ export const commentMenu = (options: IOptions) => {
                 },
                 type: "DELETE",
                 url: `${options.url}/apis/vcomment2/${$btn.closest(".comment2Item").data("id")}`,
-                success(result) {
-                    if (result.sc === 0) {
+                success(result: IResponse) {
+                    if (result.code === 0) {
                         $btn.closest(".comment2Item").remove();
                     } else {
                         alertMsg(result.msg);

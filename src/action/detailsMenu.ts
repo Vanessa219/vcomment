@@ -1,3 +1,5 @@
+import $ from "jquery";
+
 export const detailsMenu = () => {
     document.addEventListener("click", (event) => {
         const $target = $(event.target);

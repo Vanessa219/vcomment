@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {lazyLoadImage} from "../util/lazyLoadImage";
 import {parseMarkdown} from "../util/parseMarkdown";
@@ -19,7 +20,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             async: false,
             cache: true,
             url: `${options.url}/apis/vcomment/users/emotions`,
-            success(result) {
+            success(result: IResponse) {
                 if (Array.isArray(result.data)) {
                     result.data.forEach((item: { [key: string]: string }) => {
                         const key = Object.keys(item)[0];
@@ -68,7 +69,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                     data: JSON.stringify({name: key}),
                     type: "POST",
                     url: `${options.url}/apis/vcomment/users/names`,
-                    success(result) {
+                    success(result: IResponse) {
                         if (result.code === 0) {
                             atUsers = result.data.map((item: IVdtiorHint) => {
                                 item.value = `@${item.userName}`;

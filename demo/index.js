@@ -1,9 +1,10 @@
 import Vcomment from '../src/index'
+import $ from 'jquery'
 
 const vcomment = new Vcomment({
   id: 'comments',
-  postId: '1578760925288',
-  url: 'https://hacpai.com',
+  postId: '1353745196751',
+  url: 'http://localhost:8080',
   userName: '88250',
   currentPage: 1,
   vditor: {

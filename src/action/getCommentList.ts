@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {lazyLoadImage} from "../util/lazyLoadImage";
 import {parseMarkdown} from "../util/parseMarkdown";
 import {initPagination} from "./initPagination";

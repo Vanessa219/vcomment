@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {commentList} from "./action/commentList";
 import {commentMenu} from "./action/commentMenu";
 import {commentToggle} from "./action/commentToggle";

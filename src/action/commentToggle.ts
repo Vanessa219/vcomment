@@ -1,3 +1,4 @@
+import $ from "jquery";
 import {alertMsg} from "../util/alertMst";
 import {goLogin} from "../util/goLogin";
 import {initVditor} from "./initVditor";
