@@ -17,7 +17,6 @@ class Vcomment {
     constructor(options: IOptions) {
         this.options = mergeOptions(options);
         detailsMenu();
-        detailsMenu();
         commentList(options);
         commentMenu(options);
 

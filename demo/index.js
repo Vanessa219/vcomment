@@ -8,7 +8,8 @@ const vcomment = new Vcomment({
   userName: '88250',
   currentPage: 1,
   vditor: {
-    hljsEnable: false,
+    hljsEnable: true,
+    lineNumber: true,
     hljsStyle: 'github',
   },
   error () {

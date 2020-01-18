@@ -98,6 +98,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         preview: {
             hljs: {
                 enable: options.vditor.hljsEnable,
+                lineNumber: options.vditor.lineNumber,
                 style: options.vditor.hljsStyle,
             },
             mode: "editor",

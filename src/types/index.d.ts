@@ -130,4 +130,5 @@ interface IOptionsVditor {
     hljsEnable: boolean;
     hljsStyle: string;
     emoji?: { [key: string]: string };
+    lineNumber: boolean;
 }

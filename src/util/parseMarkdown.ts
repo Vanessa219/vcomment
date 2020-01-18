@@ -1,6 +1,7 @@
 export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
     Vditor.highlightRender({
         enable: vditorOptions.hljsEnable,
+        lineNumber: vditorOptions.lineNumber,
         style: vditorOptions.hljsStyle,
     }, document);
 
