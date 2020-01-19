@@ -67,6 +67,7 @@ $popItemColor: #616161 !default;
 
   &__flex1 {
     flex: 1;
+    min-width: 1px;
   }
 
   &__flexinline {
