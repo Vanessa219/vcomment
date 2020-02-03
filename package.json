@@ -1,6 +1,6 @@
 {
   "name": "vcmt",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Full-featured comment system",
   "main": "dist/index.min.js",
   "funding": "https://hacpai.com/sponsor",

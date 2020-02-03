@@ -6,12 +6,7 @@ export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
     }, document);
 
     Vditor.codeRender(document.body, vditorOptions.lang);
-    if (vditorOptions.hljsEnable) {
-        Vditor.mathRenderByLute(document.body);
-    } else {
-        Vditor.mathRender(document.body);
-    }
-
+    Vditor.mathRender(document.body);
     Vditor.abcRender();
     Vditor.chartRender();
     Vditor.mediaRender(document.body);
