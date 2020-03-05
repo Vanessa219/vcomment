@@ -6,6 +6,8 @@ declare class Vditor {
 
     public static codeRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
 
+    public static graphvizRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+
     public static mathRender(element: HTMLElement): void;
 
     public static mermaidRender(element: HTMLElement, className?: string, cdn?: string): void;
