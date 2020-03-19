@@ -93,7 +93,6 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             emojiTail: `<a href="${options.url}/settings/function" target="_blank">设置常用表情</a>`,
         },
         lang: "zh_CN",
-        mode: "wysiwyg-show",
         placeholder: $("#vcommentVditor").data("placeholder"),
         preview: {
             hljs: {
@@ -101,7 +100,6 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 lineNumber: options.vditor.lineNumber,
                 style: options.vditor.hljsStyle,
             },
-            mode: "editor",
             url: `${options.url}/apis/vcomment/markdown`,
             parse(element: HTMLElement) {
                 if (element.style.display === "none") {
@@ -138,7 +136,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "undo",
             "redo",
             "|",
-            "wysiwyg",
+            "edit-mode",
             "both",
             "preview",
             "format",
@@ -159,7 +157,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "link",
             "list",
             "check",
-            "wysiwyg",
+            "edit-mode",
             "preview",
             "fullscreen",
             "help",
