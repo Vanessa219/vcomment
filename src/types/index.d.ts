@@ -66,7 +66,9 @@ interface IVditorOptions {
         enable?: boolean;
     };
     counter?: number;
-    cache?: boolean;
+    cache?: {
+        enable?: boolean;
+    };
     mode?: string;
     preview?: {
         delay?: number;

@@ -44,7 +44,9 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 options.commentVditor.focus();
             }
         },
-        cache: false,
+        cache: {
+            enable: false,
+        },
         counter: 4096,
         ctrlEnter() {
             addComment(options, $commentSubmitBtn);
