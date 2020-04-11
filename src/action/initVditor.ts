@@ -47,7 +47,10 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         cache: {
             enable: false,
         },
-        counter: 4096,
+        counter: {
+            enable: true,
+            max: 4096,
+        },
         ctrlEnter() {
             addComment(options, $commentSubmitBtn);
         },
@@ -121,18 +124,19 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "headings",
             "bold",
             "italic",
+            "strike",
             "link",
             "|",
             "list",
             "ordered-list",
             "check",
+            "outdent",
+            "indent",
             "|",
             "quote",
             "line",
             "code",
             "inline-code",
-            "|",
-            "record",
             "table",
             "|",
             "undo",
@@ -144,10 +148,12 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "format",
             "|",
             "fullscreen",
-            "devtools",
             "info",
             "help",
         ],
+        toolbarConfig: {
+            pin: false,
+        },
         typewriterMode: false,
     };
 
@@ -155,16 +161,14 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         vditorOptions.toolbar = [
             "emoji",
             "bold",
-            "italic",
             "link",
             "list",
-            "check",
             "edit-mode",
             "preview",
             "fullscreen",
-            "help",
         ];
         vditorOptions.resize.enable = false;
+        vditorOptions.toolbarConfig.pin = true;
     }
     options.commentVditor = new Vditor("vcommentVditor", vditorOptions);
 

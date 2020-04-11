@@ -65,7 +65,14 @@ interface IVditorOptions {
         position?: string;
         enable?: boolean;
     };
-    counter?: number;
+    toolbarConfig: {
+        hide?: boolean,
+        pin?: boolean,
+    };
+    counter?: {
+        enable: boolean;
+        max?: number;
+    };
     cache?: {
         enable?: boolean;
     };
