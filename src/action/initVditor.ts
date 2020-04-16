@@ -138,6 +138,8 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "code",
             "inline-code",
             "table",
+            "insert-before",
+            "insert-after",
             "|",
             "undo",
             "redo",
@@ -148,6 +150,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "format",
             "|",
             "fullscreen",
+            "devtools",
             "info",
             "help",
         ],
@@ -160,9 +163,9 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
     if ($(window).width() < 768) {
         vditorOptions.toolbar = [
             "emoji",
-            "bold",
             "link",
-            "list",
+            "upload",
+            "insert-after",
             "edit-mode",
             "preview",
             "fullscreen",
