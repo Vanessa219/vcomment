@@ -60,7 +60,7 @@ interface IVditorOptions {
     width?: number | string;
     placeholder?: string;
     lang?: string;
-    toolbar?: string[];
+    toolbar?: Array<string | { name: string, toolbar: string[] }>;
     resize?: {
         position?: string;
         enable?: boolean;
