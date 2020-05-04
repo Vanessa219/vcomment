@@ -171,8 +171,6 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
             "emoji",
             "link",
             "edit-mode",
-            "code-theme",
-            "content-theme",
             {
                 name: "more",
                 toolbar: [
