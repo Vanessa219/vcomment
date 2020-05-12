@@ -14,6 +14,8 @@ declare class Vditor {
 
     public static chartRender(element?: HTMLElement | Document, cdn?: string): void;
 
+    public static mindmapRender(element?: HTMLElement | Document, cdn?: string): void;
+
     public static abcRender(element?: HTMLElement | Document, cdn?: string): void;
 
     public static mediaRender(element: HTMLElement): void;

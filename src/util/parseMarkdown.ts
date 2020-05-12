@@ -10,6 +10,7 @@ export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
     Vditor.mathRender(document.body);
     Vditor.abcRender();
     Vditor.chartRender();
+    Vditor.mindmapRender();
     Vditor.mediaRender(document.body);
     Vditor.mermaidRender(document.body);
     document.querySelectorAll(".vditor-reset").forEach((e: HTMLElement) => {
