@@ -18,14 +18,14 @@ export const getCommentList = (options: IOptions) => {
             lazyLoadImage();
             parseMarkdown(options.vditor);
             initPagination(options);
+            if (options.after) {
+                options.after();
+            }
             options.commentVditor = null;
             if (options.currentPage === 1) {
                 return;
             }
             $("html, body").animate({scrollTop: $(`#${options.id}`).offset().top}, 300);
-            if (options.after) {
-                options.after();
-            }
         },
         url: `${options.url}/apis/vcomment?aid=${options.postId}&p=${options.currentPage}&un=${options.userName}`,
     });
