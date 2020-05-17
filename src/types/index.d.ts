@@ -134,6 +134,7 @@ interface IOptions {
     vditor?: IOptionsVditor;
     commentVditor?: Vditor;
     error?: () => void;
+    after?: () => void;
 }
 
 interface IOptionsVditor {

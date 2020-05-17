@@ -23,6 +23,9 @@ export const getCommentList = (options: IOptions) => {
                 return;
             }
             $("html, body").animate({scrollTop: $(`#${options.id}`).offset().top}, 300);
+            if (options.after) {
+                options.after();
+            }
         },
         url: `${options.url}/apis/vcomment?aid=${options.postId}&p=${options.currentPage}&un=${options.userName}`,
     });
