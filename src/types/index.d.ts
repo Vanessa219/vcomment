@@ -143,4 +143,5 @@ interface IOptionsVditor {
     hljsStyle: string;
     emoji?: { [key: string]: string };
     lineNumber: boolean;
+    speech: boolean;
 }

@@ -11,6 +11,7 @@ export const mergeOptions = (options: IOptions) => {
             hljsStyle: "github",
             lang: "zh_CN",
             lineNumber: false,
+            speech: false,
         },
     };
 

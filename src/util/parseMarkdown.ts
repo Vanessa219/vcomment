@@ -13,4 +13,10 @@ export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
     Vditor.mindmapRender();
     Vditor.mediaRender(document.body);
     Vditor.mermaidRender(document.body);
+
+    if (vditorOptions.speech) {
+        document.querySelectorAll(".vditor-reset").forEach((e: HTMLElement) => {
+            Vditor.speechRender(e, vditorOptions.lang);
+        });
+    }
 };
