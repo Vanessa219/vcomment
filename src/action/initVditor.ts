@@ -67,35 +67,38 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         },
         height: 200,
         hint: {
-            at: (key: string) => {
-                let atUsers: IVdtiorHint[] = [];
-                $.ajax({
-                    async: false,
-                    data: JSON.stringify({name: key}),
-                    type: "POST",
-                    url: `${options.url}/apis/vcomment/users/names`,
-                    success(result: IResponse) {
-                        if (result.code === 0) {
-                            atUsers = result.data.map((item: IVdtiorHint) => {
-                                item.value = `@${item.userName}`;
-                                item.html = `<img src='${item.userAvatarURL}'/> ${item.userName}`;
-                                return item;
-                            });
-                            if (key === "") {
-                                atUsers.push({
-                                    html: "<img src='https://static.hacpai.com/images/user-thumbnail.png'/> 参与者",
-                                    value: "@participants",
-                                });
-                            }
-                        } else {
-                            alertMsg(result.msg);
-                        }
-                    },
-                });
-                return atUsers;
-            },
             emoji: options.vditor.emoji,
             emojiTail: `<a href="${options.url}/settings/function" target="_blank">设置常用表情</a>`,
+            extend: [{
+                hint: (key: string) => {
+                    let atUsers: IVdtiorHint[] = [];
+                    $.ajax({
+                        async: false,
+                        data: JSON.stringify({name: key}),
+                        type: "POST",
+                        url: `${options.url}/apis/vcomment/users/names`,
+                        success(result: IResponse) {
+                            if (result.code === 0) {
+                                atUsers = result.data.map((item: IVdtiorHint) => {
+                                    item.value = `@${item.userName}`;
+                                    item.html = `<img src='${item.userAvatarURL}'/> ${item.userName}`;
+                                    return item;
+                                });
+                                if (key === "") {
+                                    atUsers.push({
+                                        html: "<img src='https://static.hacpai.com/images/user-thumbnail.png'/> 参与者",
+                                        value: "@participants",
+                                    });
+                                }
+                            } else {
+                                alertMsg(result.msg);
+                            }
+                        },
+                    });
+                    return atUsers;
+                },
+                key: "@",
+            }],
         },
         lang: "zh_CN",
         placeholder: $("#vcommentVditor").data("placeholder"),

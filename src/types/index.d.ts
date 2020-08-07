@@ -47,6 +47,17 @@ interface IVdtiorHint {
     html: string;
 }
 
+interface IHintData {
+    html: string;
+    value: string;
+}
+
+interface IHintExtend {
+    key: string;
+
+    hint?(value: string): IHintData[];
+}
+
 interface II18nLang {
     en_US: string;
     zh_CN: string;
@@ -100,8 +111,7 @@ interface IVditorOptions {
         delay?: number;
         emoji?: { [key: string]: string };
         emojiPath?: string;
-
-        at?(value: string): IVdtiorHint[];
+        extend?: IHintExtend[];
     };
     cdn?: string;
     tab?: string;
