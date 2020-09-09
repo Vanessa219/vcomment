@@ -3,7 +3,7 @@ export const mergeOptions = (options: IOptions) => {
         currentPage: 1,
         id: "",
         postId: "",
-        url: "https://hacpai.com",
+        url: "https://ld246.com",
         userName: "",
         vditor: {
             emoji: null,

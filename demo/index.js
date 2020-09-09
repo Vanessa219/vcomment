@@ -4,7 +4,7 @@ import $ from 'jquery'
 const vcomment = new Vcomment({
   id: 'comments',
   postId: '1578760925288',
-  url: 'https://hacpai.com',
+  url: 'https://ld246.com',
   userName: '88250',
   currentPage: 1,
   vditor: {

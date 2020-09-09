@@ -14,7 +14,7 @@ export const commentMenu = (options: IOptions) => {
     </div>
     <div class="vcomment__hr"></div>
     <div class="vcomment__meta">
-     仅支持_斜体_、**加粗**以及超链接，请浏览<a href="https://hacpai.com/article/1555259445024" target="_blank">使用场景说明</a>了解更多细节
+     仅支持_斜体_、**加粗**以及超链接，请浏览<a href="https://ld246.com/article/1555259445024" target="_blank">使用场景说明</a>了解更多细节
     </div>
 </div>`;
     $(`#${options.id}`).on("click", ".commentMenuBtn", function() {

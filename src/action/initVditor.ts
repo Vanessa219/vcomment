@@ -86,7 +86,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                                 });
                                 if (key === "") {
                                     atUsers.push({
-                                        html: "<img src='https://static.hacpai.com/images/user-thumbnail.png'/> 参与者",
+                                        html: "<img src='https://static.ld246.com/images/user-thumbnail.png'/> 参与者",
                                         value: "@participants",
                                     });
                                 }
