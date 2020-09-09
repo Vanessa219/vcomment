@@ -55,7 +55,7 @@ vcomment.render()
 | id| 渲染元素的 id |-|
 | postId| 文章 id |-|
 | userName| 用户名 |-|
-| url| 评论 API 地址 |"https://hacpai.com"|
+| url| 评论 API 地址 |"https://ld246.com"|
 | currentPage| 评论页码|1|
 | error| 获取列表错误回调|-|
 |vditor|编辑器参数|-|
