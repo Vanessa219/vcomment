@@ -10,7 +10,9 @@ declare class Vditor {
 
     public static mathRender(element: HTMLElement): void;
 
-    public static mermaidRender(element: HTMLElement, className?: string, cdn?: string): void;
+    public static mermaidRender(element: HTMLElement, cdn?: string): void;
+
+    public static flowchartRender(element: HTMLElement, cdn?: string): void;
 
     public static chartRender(element?: HTMLElement | Document, cdn?: string): void;
 
