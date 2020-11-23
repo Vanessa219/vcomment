@@ -9,10 +9,10 @@ export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
     Vditor.graphvizRender(document.body);
     Vditor.mathRender(document.body);
     Vditor.abcRender();
-    Vditor.chartRender();
-    Vditor.mindmapRender();
+    Vditor.chartRender(document.body, undefined,  vditorOptions.theme);
+    Vditor.mindmapRender(document.body, undefined, vditorOptions.theme);
     Vditor.mediaRender(document.body);
-    Vditor.mermaidRender(document.body);
+    Vditor.mermaidRender(document.body, undefined, vditorOptions.theme);
     Vditor.flowchartRender(document.body);
 
     if (vditorOptions.speech) {

@@ -10,13 +10,13 @@ declare class Vditor {
 
     public static mathRender(element: HTMLElement): void;
 
-    public static mermaidRender(element: HTMLElement, cdn?: string): void;
+    public static mermaidRender(element: HTMLElement, cdn?: string, theme?: string): void;
 
     public static flowchartRender(element: HTMLElement, cdn?: string): void;
 
-    public static chartRender(element?: HTMLElement | Document, cdn?: string): void;
+    public static chartRender(element?: HTMLElement | Document, cdn?: string, theme?: string): void;
 
-    public static mindmapRender(element?: HTMLElement | Document, cdn?: string): void;
+    public static mindmapRender(element?: HTMLElement | Document, cdn?: string, theme?: string): void;
 
     public static abcRender(element?: HTMLElement | Document, cdn?: string): void;
 
@@ -156,4 +156,5 @@ interface IOptionsVditor {
     emoji?: { [key: string]: string };
     lineNumber: boolean;
     speech: boolean;
+    theme: "dark" | "light";
 }

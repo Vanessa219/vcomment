@@ -12,6 +12,7 @@ export const mergeOptions = (options: IOptions) => {
             lang: "zh_CN",
             lineNumber: false,
             speech: false,
+            theme: "light",
         },
     };
 
