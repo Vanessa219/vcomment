@@ -5,7 +5,7 @@ export const parseMarkdown = (vditorOptions: IOptionsVditor) => {
         style: vditorOptions.hljsStyle,
     }, document);
 
-    Vditor.codeRender(document.body, vditorOptions.lang);
+    Vditor.codeRender(document.body);
     Vditor.plantumlRender(document.body);
     Vditor.graphvizRender(document.body);
     Vditor.mathRender(document.body);

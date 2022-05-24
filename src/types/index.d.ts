@@ -4,7 +4,7 @@ declare module "jquery";
 declare class Vditor {
     public static speechRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
 
-    public static codeRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+    public static codeRender(element: HTMLElement): void;
 
     public static plantumlRender(element: HTMLElement, cdn?: string): void;
 
