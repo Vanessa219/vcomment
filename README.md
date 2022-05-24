@@ -37,8 +37,8 @@ vcomment.render()
 * 在 HTML 中插入 js，可参考 [index-static.html](https://github.com/Vanessa219/vcomment/blob/master/demo/index-static.html)
 
 ```html
-<!-- ⚠️生产环境请指定版本号，如 https://cdn.jsdelivr.net/npm/vcmt@x.x.x/dist... -->
-<script src="https://cdn.jsdelivr.net/npm/vcmt/dist/index.min.js" defer></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/vcmt@1.3.1/dist/index.min.js" defer></script> -->
+<script src="https://unpkg.com/vcmt@1.3.1/dist/index.min.js" defer></script>
 ```
 
 ### 示例代码
