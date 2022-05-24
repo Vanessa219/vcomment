@@ -90,7 +90,9 @@ module.exports = {
     }),
   ],
   devServer: {
-    contentBase: path.join(__dirname, '.'),
+    static: {
+      directory: path.join(__dirname, '.'),
+    },
     port: 9220,
     host: '0.0.0.0',
   },
