@@ -8,9 +8,9 @@ declare class Vditor {
 
     public static plantumlRender(element: HTMLElement, cdn?: string): void;
 
-    public static graphvizRender(element: HTMLElement, lang?: (keyof II18nLang)): void;
+    public static graphvizRender(element: HTMLElement, cdn?: string): void;
 
-    public static mathRender(element: HTMLElement): void;
+    public static mathRender(element: HTMLElement, options?: { cdn?: string, math?: IMath }): void;
 
     public static mermaidRender(element: HTMLElement, cdn?: string, theme?: string): void;
 
@@ -42,6 +42,17 @@ declare class Vditor {
     public enable(): void;
 
     public setValue(markdown: string): void;
+}
+
+interface IMath {
+    /** 内联数学公式起始 $ 后是否允许数字。默认值: false */
+    inlineDigit?: boolean;
+    /** 使用 MathJax 渲染时传入的宏定义。默认值: {} */
+    macros?: object;
+    /** 数学公式渲染引擎。默认值: 'KaTeX' */
+    engine?: "KaTeX" | "MathJax";
+    /** 数学公式渲染引擎为 MathJax 时传入的参数 */
+    mathJaxOptions?: any;
 }
 
 interface IVdtiorHint {
@@ -98,6 +109,10 @@ interface IVditorOptions {
         delay?: number;
         maxWidth?: number;
         mode?: string;
+        theme?: {
+            current?: string;
+            path?: string;
+        }
         url?: string;
         hljs?: {
             lineNumber?: boolean;
@@ -152,11 +167,18 @@ interface IOptions {
 }
 
 interface IOptionsVditor {
+    cdn?: string;
+    hint?: {
+        emoji?: { [key: string]: string };
+        emojiPath?: string;
+    };
     lang: keyof II18nLang;
     hljsEnable: boolean;
     hljsStyle: string;
-    emoji?: { [key: string]: string };
     lineNumber: boolean;
     speech: boolean;
-    theme: "dark" | "light";
+    theme?: {
+        current?: string;
+        path?: string;
+    };
 }

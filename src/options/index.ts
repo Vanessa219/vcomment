@@ -6,13 +6,19 @@ export const mergeOptions = (options: IOptions) => {
         url: "https://ld246.com",
         userName: "",
         vditor: {
-            emoji: null,
+            cdn: "https://cdn.jsdelivr.net/npm/vditor",
+            hint: {
+                emojiPath: "https://cdn.jsdelivr.net/npm/vditor/dist/images/emoji",
+            },
             hljsEnable: true,
             hljsStyle: "github",
             lang: "zh_CN",
             lineNumber: false,
             speech: false,
-            theme: "light",
+            theme: {
+                current: "light",
+                path: "https://cdn.jsdelivr.net/npm/vditor/dist/css/content-theme",
+            },
         },
     };
 

@@ -14,8 +14,8 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         return;
     }
 
-    if (!options.vditor.emoji) {
-        options.vditor.emoji = {};
+    if (!options.vditor.hint.emoji) {
+        options.vditor.hint.emoji = {};
         $.ajax({
             async: false,
             cache: true,
@@ -24,7 +24,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 if (Array.isArray(result.data)) {
                     result.data.forEach((item: { [key: string]: string }) => {
                         const key = Object.keys(item)[0];
-                        options.vditor.emoji[key] = item[key];
+                        options.vditor.hint.emoji[key] = item[key];
                     });
                 }
             },
@@ -47,6 +47,7 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         cache: {
             enable: false,
         },
+        cdn: options.vditor.cdn,
         counter: {
             enable: true,
             max: 4096,
@@ -67,7 +68,8 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
         },
         height: 200,
         hint: {
-            emoji: options.vditor.emoji,
+            emoji: options.vditor.hint.emoji,
+            emojiPath: options.vditor.hint.emojiPath,
             emojiTail: `<a href="${options.url}/settings/function" target="_blank">设置常用表情</a>`,
             extend: [{
                 hint: (key: string) => {
@@ -107,6 +109,10 @@ export const initVditor = (options: IOptions, defaultValue: string = "") => {
                 enable: options.vditor.hljsEnable,
                 lineNumber: options.vditor.lineNumber,
                 style: options.vditor.hljsStyle,
+            },
+            theme: {
+                current: options.vditor.theme.current,
+                path: options.vditor.theme.path,
             },
             url: `${options.url}/apis/vcomment/markdown`,
             parse(element: HTMLElement) {
